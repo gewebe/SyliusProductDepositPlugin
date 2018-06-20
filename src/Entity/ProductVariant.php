@@ -7,7 +7,7 @@ namespace Gweb\SyliusDepositPlugin\Entity;
 use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
 
 /**
- * Entity for the product variant with deposit prices implemented as trait.
+ * Entity for the product variant with deposits implemented as trait.
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */

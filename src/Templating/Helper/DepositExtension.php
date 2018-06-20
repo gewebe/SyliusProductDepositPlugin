@@ -7,7 +7,7 @@ namespace Gweb\SyliusDepositPlugin\Templating\Helper;
 use Symfony\Component\Templating\Helper\Helper;
 
 /**
- * Template extension to get deposit price
+ * Template extension to get deposit fee
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */

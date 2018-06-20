@@ -16,7 +16,7 @@ use Sylius\Component\Core\Model\ProductInterface;
 final class DepositContext implements Context
 {
     /**
-     * @Given /^"([^"]*)" has a deposit price with ("[^"]+")$/
+     * @Given /^"([^"]*)" has a deposit fee with ("[^"]+")$/
      */
     public function productHasADepositPrice(ProductInterface $product, int $price): void
     {

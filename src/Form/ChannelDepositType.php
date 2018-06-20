@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Form type for the deposit price entity
+ * Form type for the deposit entity
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */

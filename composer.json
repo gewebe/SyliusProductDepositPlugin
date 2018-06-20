@@ -1,7 +1,7 @@
 {
     "name": "gweb/deposit-plugin",
     "type": "sylius-plugin",
-    "description": "A Sylius plugin that allows deposit prices for products",
+    "description": "A Sylius plugin that allows deposit fees for products",
     "license": "MIT",
     "require": {
         "php": "^7.1",

@@ -9,14 +9,14 @@ use Symfony\Component\Templating\Helper\Helper;
 use Webmozart\Assert\Assert;
 
 /**
- * Template helper to get deposit price
+ * Template helper to get deposit fee
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 class DepositHelper extends Helper
 {
     /**
-     * Get deposit price by given product variant and context
+     * Get deposit fee by given product variant and context
      * @param ProductVariant $productVariant
      * @param array $context
      * @return int|null

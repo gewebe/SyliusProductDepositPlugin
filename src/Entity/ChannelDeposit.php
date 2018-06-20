@@ -7,7 +7,7 @@ namespace Gweb\SyliusDepositPlugin\Entity;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 
 /**
- * Entity that stores deposit prices for product variants
+ * Entity that stores deposit for product variants
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
