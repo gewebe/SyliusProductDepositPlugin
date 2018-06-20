@@ -1,0 +1,8 @@
+gweb_deposit:
+    admin:
+        product_variant:
+            menu: Depósito
+            tab: Depósito
+            price: Precio de depósito
+    ui:
+        deposit: 'más depósito:'

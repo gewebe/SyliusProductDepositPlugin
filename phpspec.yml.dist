@@ -1,0 +1,4 @@
+suites:
+    main:
+        namespace: Gweb\SyliusDepositPlugin
+        psr4_prefix: Gweb\SyliusDepositPlugin

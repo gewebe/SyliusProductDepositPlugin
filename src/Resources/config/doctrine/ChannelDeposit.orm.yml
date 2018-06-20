@@ -1,0 +1,30 @@
+Gweb\SyliusDepositPlugin\Entity\ChannelDeposit:
+    type: entity
+    table: gweb_channel_deposit
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        price:
+            type: integer
+            options:
+                unsigned: true
+        channelCode:
+            type: string
+            column: channel_code
+    uniqueConstraints:
+        productDeposit:
+            columns:
+                - product_variant_id
+                - channel_code
+    manyToOne:
+        productVariant:
+            targetEntity: Gweb\SyliusDepositPlugin\Entity\ProductVariant
+            inversedBy: channelDeposits
+            joinColumn:
+                name: product_variant_id
+                referencedColumnName: id
+                onDelete: CASCADE

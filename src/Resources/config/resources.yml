@@ -1,0 +1,15 @@
+# Overriding product variant resource
+sylius_product:
+  resources:
+    product_variant:
+      classes:
+        model: Gweb\SyliusDepositPlugin\Entity\ProductVariant
+
+# New channel deposit resources
+sylius_resource:
+  resources:
+    gweb_deposit.channel_deposit:
+      classes:
+        model: Gweb\SyliusDepositPlugin\Entity\ChannelDeposit
+        interface: Gweb\SyliusDepositPlugin\Entity\ChannelDepositInterface
+        form: Gweb\SyliusDepositPlugin\Form\ChannelDepositType

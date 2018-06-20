@@ -1,0 +1,10 @@
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+
+{% set variant = settings.product|sylius_resolve_variant %}
+{% set deposit = variant|gweb_calculate_deposit({'channel': sylius.channel}) %}
+
+{% if deposit > 0 %}
+<span class="ui huge header" id="product-deposit">
+        {{ 'gweb_deposit.ui.deposit'|trans }} {{ money.convertAndFormat(deposit) }}
+</span>
+{% endif %}

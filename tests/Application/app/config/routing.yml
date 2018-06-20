@@ -1,0 +1,7 @@
+sylius:
+    resource: "../../../../vendor/sylius/sylius/app/config/routing.yml"
+
+# Put your own routes here
+
+gweb_sylius_deposit_shop:
+    resource: "@GwebSyliusDepositPlugin/Resources/config/app/shop_routing.yml"

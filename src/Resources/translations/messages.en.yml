@@ -1,0 +1,8 @@
+gweb_deposit:
+    admin:
+        product_variant:
+            menu: Deposit
+            tab: Deposit
+            price: Deposit Price
+    ui:
+        deposit: 'excl. deposit:'

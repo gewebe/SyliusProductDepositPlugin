@@ -1,0 +1,49 @@
+services:
+    # Admin product variant menu listener
+    gweb_deposit.listener.admin.product_variant.form.menu_builder:
+        class: Gweb\SyliusDepositPlugin\Menu\AdminProductVariantFormMenuListener
+        arguments: ['@sylius.theme.translation.theme_aware_translator.inner']
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.product_variant.form, method: addItems }
+
+    # Admin product variant form extensions
+    gweb_deposit.form.extension.type.product_variant:
+        class: Gweb\SyliusDepositPlugin\Form\Extension\ProductVariantTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType, priority: -5 }
+
+    # Admin new deposit form type
+    gweb_deposit.form.type.channel_deposit:
+        class: Gweb\SyliusDepositPlugin\Form\ChannelDepositType
+        arguments:
+            - '%gweb_deposit.model.channel_deposit.class%'
+            - ['sylius']
+        tags:
+            - { name: form.type}
+
+    # Template sonata product after price listener
+    gweb_deposit.block_event_listener.product.layout.after_header:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@GwebSyliusDepositPlugin/Product/Show/_deposit.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.product.show.after_price, method: onBlockEvent }
+
+    # Template helper
+    gweb_deposit.templating.helper.deposit:
+        class: Gweb\SyliusDepositPlugin\Templating\Helper\DepositHelper
+        tags:
+            - { name: templating.helper, alias: gweb_calculate_deposit }
+
+    # Template twig extension
+    gweb_deposit.twig.extension.deposit:
+        class: Gweb\SyliusDepositPlugin\Templating\Helper\DepositExtension
+        arguments: ['@gweb_deposit.templating.helper.deposit']
+        tags:
+            - { name: twig.extension }
+
+    # Order processor
+    gweb_deposit.order_processor.deposit:
+        class: Gweb\SyliusDepositPlugin\OrderProcessor\DepositOrderProcessor
+        tags:
+            - { name: sylius.order_processor, priority: 0 }

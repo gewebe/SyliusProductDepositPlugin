@@ -1,0 +1,8 @@
+gweb_deposit:
+    admin:
+        product_variant:
+            menu: Pfand
+            tab: Pfand
+            price: Pfandpreis
+    ui:
+        deposit: 'zzgl. Pfand:'

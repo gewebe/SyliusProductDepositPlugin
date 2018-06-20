@@ -1,0 +1,11 @@
+Gweb\SyliusDepositPlugin\Entity\ProductVariant:
+    type: entity
+    table: sylius_product_variant
+    oneToMany:
+        channelDeposits:
+            targetEntity: Gweb\SyliusDepositPlugin\Entity\ChannelDepositInterface
+            mappedBy: productVariant
+            orphanRemoval: true
+            indexBy: channelCode
+            cascade:
+                - all
