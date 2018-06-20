@@ -1,5 +1,5 @@
 {
-    "name": "sylius/plugin-deposit-plugin",
+    "name": "gweb/plugin-deposit-plugin",
     "type": "sylius-plugin",
     "description": "A Sylius plugin that allows deposit prices for products",
     "license": "MIT",
