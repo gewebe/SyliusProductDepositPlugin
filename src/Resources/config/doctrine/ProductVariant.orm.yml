@@ -1,6 +1,13 @@
 Gweb\SyliusDepositPlugin\Entity\ProductVariant:
     type: entity
     table: sylius_product_variant
+    manyToOne:
+        depositTaxCategory:
+            targetEntity: Sylius\Component\Taxation\Model\TaxCategoryInterface
+            joinColumn:
+                name: deposit_tax_category_id
+                referencedColumnName: id
+                onDelete: SET NULL
     oneToMany:
         channelDeposits:
             targetEntity: Gweb\SyliusDepositPlugin\Entity\ChannelDepositInterface

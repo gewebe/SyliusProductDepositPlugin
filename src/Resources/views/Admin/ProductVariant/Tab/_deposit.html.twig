@@ -1,5 +1,8 @@
 <div class="ui tab" data-tab="deposit">
     <h3 class="ui dividing header">{{ 'gweb_deposit.admin.product_variant.tab'|trans }}</h3>
+
+    {{ form_row(form.depositTaxCategory) }}
+
     {{ form_row(form.channelDeposits) }}
 
     {{ sonata_block_render_event('sylius.admin.product_variant.' ~ action ~ '.tab_deposit', {'form': form}) }}

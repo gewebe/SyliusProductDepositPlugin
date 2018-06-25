@@ -4,5 +4,6 @@ gweb_deposit:
             menu: Pfand
             tab: Pfand
             price: Pfandpreis
+            tax_category: Pfand Steuerkategorie
     ui:
         deposit: 'zzgl. Pfand:'

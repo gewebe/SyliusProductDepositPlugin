@@ -7,6 +7,7 @@ namespace Gweb\SyliusDepositPlugin\Form\Extension;
 use Gweb\SyliusDepositPlugin\Form\ChannelDepositType;
 use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType;
+use Sylius\Bundle\TaxationBundle\Form\Type\TaxCategoryChoiceType;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -25,6 +26,12 @@ class ProductVariantTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $builder->add('depositTaxCategory', TaxCategoryChoiceType::class, [
+          'required' => false,
+          'placeholder' => '---',
+          'label' => 'gweb_deposit.admin.product_variant.tax_category',
+        ]);
+
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
             $productVariant = $event->getData();
 

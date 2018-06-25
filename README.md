@@ -3,7 +3,7 @@ The deposit plugin in Sylius allows you to set an amount of refundable deposit f
 
 ## Features
 
- * Store individual deposit fees for each product variant and channel
+ * Store individual deposit fees with tax rates for each product variant and channel
  * The deposit is displayed on the product detail page
  * At shopping cart / checkout / order the total unit price inclusive deposit is displayed.
 
@@ -11,7 +11,7 @@ The deposit plugin in Sylius allows you to set an amount of refundable deposit f
 
 Install the plugin via composer
 ```bash
-composer require gweb/sylius-deposit-plugin
+composer require gweb/deposit-plugin
 ```
 
 Register the plugin in your AppKernel file:

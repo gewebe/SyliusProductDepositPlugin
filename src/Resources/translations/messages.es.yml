@@ -4,5 +4,6 @@ gweb_deposit:
             menu: Depósito
             tab: Depósito
             price: Precio de depósito
+            tax_category: Deposit tax category
     ui:
         deposit: 'más depósito:'

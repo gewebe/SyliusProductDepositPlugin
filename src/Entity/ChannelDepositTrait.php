@@ -7,6 +7,7 @@ namespace Gweb\SyliusDepositPlugin\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 
 /**
  * Trait that implements the deposit functionality
@@ -26,6 +27,11 @@ trait ChannelDepositTrait
      * @var Collection
      */
     protected $channelDeposits;
+
+    /**
+     * @var TaxCategoryInterface
+     */
+    protected $depositTaxCategory;
 
     /**
      * Returns all deposit elements for all channels
@@ -94,6 +100,22 @@ trait ChannelDepositTrait
             $channelDeposit->setProductVariant(null);
             $this->channelDeposits->remove($channelDeposit->getChannelCode());
         }
+    }
+
+    /**
+     * @return TaxCategoryInterface
+     */
+    public function getDepositTaxCategory(): ?TaxCategoryInterface
+    {
+        return $this->depositTaxCategory;
+    }
+
+    /**
+     * @param TaxCategoryInterface $depositTaxCategory
+     */
+    public function setDepositTaxCategory(?TaxCategoryInterface $depositTaxCategory): void
+    {
+        $this->depositTaxCategory = $depositTaxCategory;
     }
 
 }
