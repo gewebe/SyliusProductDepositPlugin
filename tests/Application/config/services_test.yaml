@@ -1,0 +1,10 @@
+imports:
+    - { resource: "@GwebSyliusProductDepositPlugin/Resources/config/config.yml" }
+    - { resource: "../../Behat/Resources/services.yml" }
+    - { resource: "../../../vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml" }
+
+sylius_product:
+  resources:
+    product_variant:
+      classes:
+        model: Gweb\SyliusProductDepositPlugin\Entity\ProductVariant
