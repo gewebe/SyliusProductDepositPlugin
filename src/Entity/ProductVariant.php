@@ -12,6 +12,9 @@ use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
  * Entity for the product variant with deposits implemented as trait
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="sylius_product_variant")
  */
 class ProductVariant extends BaseProductVariant implements DepositProductVariantInterface
 {

@@ -25,11 +25,22 @@ trait ProductVariantDepositTrait
 
     /**
      * @var Collection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="\Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface",
+     *     mappedBy="productVariant",
+     *     indexBy="channelCode",
+     *     cascade={"all"},
+     *     orphanRemoval=true
+     * )
      */
     protected $channelDeposits;
 
     /**
      * @var TaxCategoryInterface
+     *
+     * @ORM\ManyToOne(targetEntity="\Sylius\Component\Taxation\Model\TaxCategoryInterface", cascade={"all"}, fetch="EAGER")
+     * @ORM\JoinColumn(name="deposit_tax_category_id", referencedColumnName="id", onDelete="SET NULL")
      */
     protected $depositTaxCategory;
 
@@ -117,5 +128,4 @@ trait ProductVariantDepositTrait
     {
         $this->depositTaxCategory = $depositTaxCategory;
     }
-
 }
