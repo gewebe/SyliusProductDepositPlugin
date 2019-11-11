@@ -1,10 +1,23 @@
-# Put your Behat suites definitions here
-
 default:
     suites:
-        gweb_deposit:
-            contexts_services:
-                - gweb.behat.context.deposit
+        ui_managing_product_deposit:
+            contexts:
+                - sylius.behat.context.hook.doctrine_orm
 
+                - sylius.behat.context.setup.admin_security
+                - sylius.behat.context.setup.channel
+                - sylius.behat.context.setup.product
+                - sylius.behat.context.setup.taxation
+
+                - sylius.behat.context.transform.lexical
+                - sylius.behat.context.transform.product
+                - sylius.behat.context.transform.product_variant
+
+                #- sylius.behat.context.ui.admin.browsing_product_variants
+                - sylius.behat.context.ui.admin.managing_product_variants
+                - sylius.behat.context.ui.admin.notification
+                #- sylius.behat.context.ui.shop.browsing_product
+
+                - gweb_product_deposit.behat.context.ui.admin.deposit
             filters:
-                tags: "@deposit && @ui"
+                tags: "@managing_product_deposit && @ui"

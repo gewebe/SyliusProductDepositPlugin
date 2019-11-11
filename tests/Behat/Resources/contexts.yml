@@ -1,5 +1,0 @@
-services:
-  gweb.behat.context.deposit:
-    class: Gweb\Behat\Context\DepositContext
-    tags:
-      - { name: fob.context_service }

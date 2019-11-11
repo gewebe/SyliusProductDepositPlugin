@@ -1,0 +1,12 @@
+services:
+    _defaults: { public: true }
+
+    gweb_product_deposit.behat.context.ui.admin.deposit:
+        class: Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Ui\Admin\ManagingProductVariantsContext
+        arguments:
+            - "@gweb_product_deposit.behat.page.ui.admin.product_variant_update"
+
+    gweb_product_deposit.behat.page.ui.admin.product_variant_update:
+        class: Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Ui\Admin\ProductVariantUpdatePage
+        parent: sylius.behat.page.admin.product_variant.update
+        public: false
