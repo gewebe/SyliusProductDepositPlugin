@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace Gweb\SyliusProductDepositPlugin\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFilter;
 
 /**
  * Template extension to get deposit fee
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
-class DepositExtension extends \Twig_Extension
+class DepositExtension extends AbstractExtension
 {
     /**
      * @var Helper
@@ -32,7 +34,7 @@ class DepositExtension extends \Twig_Extension
     public function getFilters(): array
     {
         return [
-          new \Twig_Filter('gweb_calculate_deposit', [$this->helper, 'getPrice']),
+          new TwigFilter('gweb_calculate_deposit', [$this->helper, 'getPrice']),
         ];
     }
 }
