@@ -4,6 +4,6 @@ gweb_deposit:
             menu: Deposit
             tab: Deposit
             price: Deposit fee
-            tax_category: Categoría de impuesto de depósito
+            tax_category: Deposit tax category
     ui:
         deposit: 'excl. deposit:'
