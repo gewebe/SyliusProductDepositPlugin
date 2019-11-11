@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Gweb\SyliusProductDepositPlugin\Menu;
 
-use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
+use Sylius\Bundle\AdminBundle\Event\ProductVariantMenuBuilderEvent;
 use Symfony\Component\Translation\Translator;
 
 /**
@@ -24,9 +24,10 @@ final class AdminProductVariantFormMenuListener
         $this->translator = $translator;
     }
 
-    public function addItems(MenuBuilderEvent $event): void
+    public function addItems(ProductVariantMenuBuilderEvent $event): void
     {
         $menu = $event->getMenu();
+
         $menu->addChild('deposit', ['position' => 1])
           ->setAttribute(
             'template',
