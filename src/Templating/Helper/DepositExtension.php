@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusDepositPlugin\Templating\Helper;
+namespace Gweb\SyliusProductDepositPlugin\Templating\Helper;
 
 use Symfony\Component\Templating\Helper\Helper;
 

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusDepositPlugin\Form\Extension;
+namespace Gweb\SyliusProductDepositPlugin\Form\Extension;
 
-use Gweb\SyliusDepositPlugin\Form\ChannelDepositType;
+use Gweb\SyliusProductDepositPlugin\Form\ChannelDepositType;
 use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType;
 use Sylius\Bundle\TaxationBundle\Form\Type\TaxCategoryChoiceType;

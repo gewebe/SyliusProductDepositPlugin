@@ -2,9 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusDepositPlugin\Entity;
-
-use Sylius\Component\Core\Model\ProductVariantInterface;
+namespace Gweb\SyliusProductDepositPlugin\Entity;
 
 /**
  * Entity that stores deposit for product variants
@@ -66,9 +64,9 @@ class ChannelDeposit implements ChannelDepositInterface
     }
 
     /**
-     * @return ProductVariantInterface
+     * @return null|ProductVariantInterface
      */
-    public function getProductVariant(): ProductVariantInterface
+    public function getProductVariant(): ?ProductVariantInterface
     {
         return $this->productVariant;
     }
@@ -76,7 +74,7 @@ class ChannelDeposit implements ChannelDepositInterface
     /**
      * @param ProductVariantInterface $productVariants
      */
-    public function setProductVariant(ProductVariantInterface $productVariants): void
+    public function setProductVariant(?ProductVariantInterface $productVariants): void
     {
         $this->productVariant = $productVariants;
     }
@@ -96,5 +94,4 @@ class ChannelDeposit implements ChannelDepositInterface
     {
         $this->channelCode = $channelCode;
     }
-
 }

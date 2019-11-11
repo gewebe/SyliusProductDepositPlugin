@@ -43,8 +43,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Gweb\\SyliusDepositPlugin\\": "src/",
-            "Tests\\Gweb\\SyliusDepositPlugin\\": "tests/"
+            "Gweb\\SyliusProductDepositPlugin\\": "src/",
+            "Tests\\Gweb\\SyliusProductDepositPlugin\\": "tests/"
         }
     },
     "autoload-dev": {

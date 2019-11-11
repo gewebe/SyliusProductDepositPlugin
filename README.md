@@ -1,4 +1,4 @@
-# Sylius Deposit Plugin
+# Sylius Product Deposit Plugin
 The deposit plugin in Sylius allows you to set an amount of refundable deposit for any product. For example: deposit for car replacement parts, batteries or bottle deposit for drinks.
 
 ## Features
@@ -21,7 +21,7 @@ public function registerBundles()
     return array_merge(parent::registerBundles(), [
         ...
 
-        new \Gweb\SyliusDepositPlugin\GwebSyliusDepositPlugin(),
+        new \Gweb\SyliusProductDepositPlugin\GwebSyliusProductDepositPlugin(),
     ]);
 }
 ```
@@ -29,7 +29,7 @@ public function registerBundles()
 Add the `config.yml` to your local `app/config/config.yml`
 ```yml
 imports:
-    - { resource: '@GwebSyliusDepositPlugin/Resources/config/config.yml'}
+    - { resource: '@GwebSyliusProductDepositPlugin/Resources/config/config.yml'}
 ```
 
 Update your database schema

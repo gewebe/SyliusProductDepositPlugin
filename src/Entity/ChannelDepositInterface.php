@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusDepositPlugin\Entity;
+namespace Gweb\SyliusProductDepositPlugin\Entity;
 
-use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
@@ -14,11 +13,6 @@ use Sylius\Component\Resource\Model\ResourceInterface;
  */
 interface ChannelDepositInterface extends ResourceInterface
 {
-    /**
-     * @return mixed
-     */
-    public function getId();
-
     /**
      * @return int
      */
@@ -30,14 +24,14 @@ interface ChannelDepositInterface extends ResourceInterface
     public function setPrice(?int $price): void;
 
     /**
-     * @return ProductVariantInterface
+     * @return ProductVariantInterface|null
      */
-    public function getProductVariant(): ProductVariantInterface;
+    public function getProductVariant(): ?ProductVariantInterface;
 
     /**
      * @param ProductVariantInterface $productVariants
      */
-    public function setProductVariant(ProductVariantInterface $productVariants): void;
+    public function setProductVariant(?ProductVariantInterface $productVariants): void;
 
     /**
      * @return string
@@ -45,7 +39,7 @@ interface ChannelDepositInterface extends ResourceInterface
     public function getChannelCode(): ?string;
 
     /**
-     * @param string|null $channelCodeCode
+     * @param string|null $channelCode
      */
-    public function setChannelCode(?string $channelCodeCode): void;
+    public function setChannelCode(?string $channelCode): void;
 }

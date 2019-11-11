@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusDepositPlugin\Menu;
+namespace Gweb\SyliusProductDepositPlugin\Menu;
 
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 use Symfony\Component\Translation\Translator;
@@ -30,7 +30,7 @@ final class AdminProductVariantFormMenuListener
         $menu->addChild('deposit', ['position' => 1])
           ->setAttribute(
             'template',
-            '@GwebSyliusDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
+            '@GwebSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
           )
           ->setLabel($this->translator->trans('gweb_deposit.admin.product_variant.menu'))
           ->setLabelAttribute('icon', 'dollar');

@@ -1,20 +1,20 @@
 services:
     # Admin product variant menu listener
     gweb_deposit.listener.admin.product_variant.form.menu_builder:
-        class: Gweb\SyliusDepositPlugin\Menu\AdminProductVariantFormMenuListener
+        class: Gweb\SyliusProductDepositPlugin\Menu\AdminProductVariantFormMenuListener
         arguments: ['@sylius.theme.translation.theme_aware_translator.inner']
         tags:
             - { name: kernel.event_listener, event: sylius.menu.admin.product_variant.form, method: addItems }
 
     # Admin product variant form extensions
     gweb_deposit.form.extension.type.product_variant:
-        class: Gweb\SyliusDepositPlugin\Form\Extension\ProductVariantTypeExtension
+        class: Gweb\SyliusProductDepositPlugin\Form\Extension\ProductVariantTypeExtension
         tags:
             - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType, priority: -5 }
 
     # Admin new deposit form type
     gweb_deposit.form.type.channel_deposit:
-        class: Gweb\SyliusDepositPlugin\Form\ChannelDepositType
+        class: Gweb\SyliusProductDepositPlugin\Form\ChannelDepositType
         arguments:
             - '%gweb_deposit.model.channel_deposit.class%'
             - ['sylius']
@@ -25,26 +25,26 @@ services:
     gweb_deposit.block_event_listener.product.layout.after_header:
         class: Sylius\Bundle\UiBundle\Block\BlockEventListener
         arguments:
-            - '@@GwebSyliusDepositPlugin/Product/Show/_deposit.html.twig'
+            - '@@GwebSyliusProductDepositPlugin/Product/Show/_deposit.html.twig'
         tags:
             - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.product.show.after_price, method: onBlockEvent }
 
     # Template helper
     gweb_deposit.templating.helper.deposit:
-        class: Gweb\SyliusDepositPlugin\Templating\Helper\DepositHelper
+        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\DepositHelper
         tags:
             - { name: templating.helper, alias: gweb_calculate_deposit }
 
     # Template twig extension
     gweb_deposit.twig.extension.deposit:
-        class: Gweb\SyliusDepositPlugin\Templating\Helper\DepositExtension
+        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\DepositExtension
         arguments: ['@gweb_deposit.templating.helper.deposit']
         tags:
             - { name: twig.extension }
 
     # Order processor
     gweb_deposit.order_processor.deposit:
-        class: Gweb\SyliusDepositPlugin\Services\OrderDepositProcessor
+        class: Gweb\SyliusProductDepositPlugin\Services\OrderDepositProcessor
         arguments: [
             '@sylius.provider.channel_based_default_zone_provider',
             '@sylius.zone_matcher',
@@ -54,7 +54,7 @@ services:
 
     # Order deposit tax applicator
     gweb_deposit.taxation.order_deposit_taxes_applicator:
-        class: Gweb\SyliusDepositPlugin\Services\OrderDepositTaxesApplicator
+        class: Gweb\SyliusProductDepositPlugin\Services\OrderDepositTaxesApplicator
         arguments: [
             '@sylius.tax_calculator',
             '@sylius.factory.adjustment',

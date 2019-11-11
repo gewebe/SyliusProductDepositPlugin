@@ -1,4 +1,4 @@
-Gweb\SyliusDepositPlugin\Entity\ChannelDeposit:
+Gweb\SyliusProductDepositPlugin\Entity\ChannelDeposit:
     type: entity
     table: gweb_channel_deposit
     id:
@@ -22,7 +22,7 @@ Gweb\SyliusDepositPlugin\Entity\ChannelDeposit:
                 - channel_code
     manyToOne:
         productVariant:
-            targetEntity: Gweb\SyliusDepositPlugin\Entity\ProductVariant
+            targetEntity: Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface
             inversedBy: channelDeposits
             joinColumn:
                 name: product_variant_id

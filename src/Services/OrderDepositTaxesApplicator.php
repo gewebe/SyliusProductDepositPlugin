@@ -1,6 +1,6 @@
 <?php
 
-namespace Gweb\SyliusDepositPlugin\Services;
+namespace Gweb\SyliusProductDepositPlugin\Services;
 
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\AdjustmentInterface;

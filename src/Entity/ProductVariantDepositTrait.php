@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusDepositPlugin\Entity;
+namespace Gweb\SyliusProductDepositPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -16,9 +16,9 @@ use Sylius\Component\Taxation\Model\TaxCategoryInterface;
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
-trait ChannelDepositTrait
+trait ProductVariantDepositTrait
 {
-    public function initChannelDepositTrait()
+    public function initProductVariantDepositTrait()
     {
         $this->channelDeposits = new ArrayCollection();
     }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusDepositPlugin\Templating\Helper;
+namespace Gweb\SyliusProductDepositPlugin\Templating\Helper;
 
-use Gweb\SyliusDepositPlugin\Entity\ProductVariant;
+use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Symfony\Component\Templating\Helper\Helper;
 use Webmozart\Assert\Assert;
 
@@ -17,11 +17,11 @@ class DepositHelper extends Helper
 {
     /**
      * Get deposit fee by given product variant and context
-     * @param ProductVariant $productVariant
+     * @param ProductVariantInterface $productVariant
      * @param array $context
      * @return int|null
      */
-    public function getPrice(ProductVariant $productVariant, array $context): ?int
+    public function getPrice(ProductVariantInterface $productVariant, array $context): ?int
     {
         Assert::keyExists($context, 'channel');
 

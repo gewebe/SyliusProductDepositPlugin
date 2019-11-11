@@ -1,4 +1,4 @@
-Gweb\SyliusDepositPlugin\Entity\ProductVariant:
+Gweb\SyliusProductDepositPlugin\Entity\ProductVariant:
     type: entity
     table: sylius_product_variant
     manyToOne:
@@ -10,7 +10,7 @@ Gweb\SyliusDepositPlugin\Entity\ProductVariant:
                 onDelete: SET NULL
     oneToMany:
         channelDeposits:
-            targetEntity: Gweb\SyliusDepositPlugin\Entity\ChannelDepositInterface
+            targetEntity: Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
             mappedBy: productVariant
             orphanRemoval: true
             indexBy: channelCode
