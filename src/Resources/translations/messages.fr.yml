@@ -1,0 +1,9 @@
+gweb_deposit:
+    admin:
+        product_variant:
+            menu: Dépôt
+            tab: Dépôt
+            price: Prix du depot
+            tax_category: Catégorie de taxe de dépôt
+    ui:
+        deposit: 'plus dépôt:'

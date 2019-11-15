@@ -3,7 +3,7 @@ gweb_deposit:
         product_variant:
             menu: Deposit
             tab: Deposit
-            price: Deposit fee
+            price: Deposit price
             tax_category: Deposit tax category
     ui:
         deposit: 'excl. deposit:'

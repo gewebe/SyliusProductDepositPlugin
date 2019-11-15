@@ -1,0 +1,9 @@
+gweb_deposit:
+    admin:
+        product_variant:
+            menu: Depósito
+            tab: Depósito
+            price: Preço do depósito
+            tax_category: Categoria de imposto de depósito
+    ui:
+        deposit: 'mais depósito:'
