@@ -2,8 +2,8 @@
 The deposit plugin in Sylius allows you to set an amount of refundable deposit for any product. For example: deposit for car replacement parts, batteries or bottle deposit for drinks.
 
 ## Features
- * Store individual deposit fees with tax rates for each product variant and channel
- * The deposit is displayed on the product detail page
+ * Store individual deposit prices for each product variant and channel
+ * The deposit price is displayed on the product detail page
  * At shopping cart / checkout / order the total unit price inclusive deposit is displayed.
 
 ## Installation

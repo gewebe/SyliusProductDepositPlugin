@@ -15,3 +15,4 @@ parameters:
 
     ignoreErrors:
         - '/Parameter #1 $configuration of method Symfony\Component\DependencyInjection\Extension\Extension::processConfiguration() expects Symfony\Component\Config\Definition\ConfigurationInterface, Symfony\Component\Config\Definition\ConfigurationInterface|null given./'
+        - '/Parameter #2 $callable of class Twig\TwigFilter constructor expects callable|null, array<int, string|Symfony\Component\Templating\Helper\Helper> given./'

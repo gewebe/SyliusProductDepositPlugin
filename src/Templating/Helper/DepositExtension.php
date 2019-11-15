@@ -9,7 +9,7 @@ use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 
 /**
- * Template extension to get deposit fee
+ * Template extension to show product deposit price
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
@@ -34,7 +34,7 @@ class DepositExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
-          new TwigFilter('gweb_calculate_deposit', [$this->helper, 'getPrice']),
+            new TwigFilter('gweb_calculate_deposit', [$this->helper, 'getPrice']),
         ];
     }
 }

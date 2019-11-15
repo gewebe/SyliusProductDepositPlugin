@@ -22,7 +22,7 @@ class ChannelDeposit implements ChannelDepositInterface
     private $price;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $channelCode;
 
@@ -64,7 +64,7 @@ class ChannelDeposit implements ChannelDepositInterface
     }
 
     /**
-     * @return null|ProductVariantInterface
+     * @return ProductVariantInterface|null
      */
     public function getProductVariant(): ?ProductVariantInterface
     {
@@ -80,7 +80,7 @@ class ChannelDeposit implements ChannelDepositInterface
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getChannelCode(): ?string
     {
@@ -88,7 +88,7 @@ class ChannelDeposit implements ChannelDepositInterface
     }
 
     /**
-     * @param null|string $channelCode
+     * @param string|null $channelCode
      */
     public function setChannelCode(?string $channelCode): void
     {

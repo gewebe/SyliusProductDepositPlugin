@@ -2,7 +2,7 @@
     "name": "gweb/sylius-product-deposit-plugin",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
-    "description": "A Sylius plugin that allows deposit fees for products",
+    "description": "A Sylius plugin that allows products with deposit price",
     "license": "MIT",
     "require": {
         "php": "^7.2",

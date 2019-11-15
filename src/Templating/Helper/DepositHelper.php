@@ -9,14 +9,14 @@ use Symfony\Component\Templating\Helper\Helper;
 use Webmozart\Assert\Assert;
 
 /**
- * Template helper to get deposit fee
+ * Template helper to get product deposit price
  *
  * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 class DepositHelper extends Helper
 {
     /**
-     * Get deposit fee by given product variant and context
+     * Get deposit price by given product variant and context
      * @param ProductVariantInterface $productVariant
      * @param array $context
      * @return int|null
@@ -25,8 +25,9 @@ class DepositHelper extends Helper
     {
         Assert::keyExists($context, 'channel');
 
-        if ($productVariant->hasChannelDepositForChannel($context['channel'])) {
-            return $productVariant->getChannelDepositForChannel($context['channel'])->getPrice();
+        $channelDeposit = $productVariant->getChannelDepositForChannel($context['channel']);
+        if (null != $channelDeposit) {
+            return $channelDeposit->getPrice();
         }
         return null;
     }

@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Gweb\SyliusProductDepositPlugin\Services;
 
+use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Matcher\ZoneMatcherInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\Scope;
 use Sylius\Component\Core\Provider\ZoneProviderInterface;
 use Sylius\Component\Order\Model\OrderInterface;
@@ -27,6 +29,7 @@ final class OrderDepositProcessor implements OrderProcessorInterface
      * @var ZoneMatcherInterface
      */
     private $zoneMatcher;
+
     /**
      * @var OrderDepositTaxesApplicator
      */
@@ -48,19 +51,24 @@ final class OrderDepositProcessor implements OrderProcessorInterface
     }
 
     /**
-     * {@inheritdoc}
+     * @param \Sylius\Component\Core\Model\OrderInterface $order
      */
     public function process(OrderInterface $order): void
     {
         $channel = $order->getChannel();
 
+        /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
 
-            if (!$item->getVariant()->hasChannelDepositForChannel($channel)) {
+            /** @var ProductVariantInterface $variant */
+            $variant = $item->getVariant();
+
+            $channelDeposit = $variant->getChannelDepositForChannel($channel);
+            if (null == $channelDeposit) {
                 continue;
             }
 
-            $depositPrice = $item->getVariant()->getChannelDepositForChannel($channel)->getPrice();
+            $depositPrice = $channelDeposit->getPrice();
 
             $item->setUnitPrice($item->getUnitPrice() + $depositPrice);
         }
@@ -70,7 +78,7 @@ final class OrderDepositProcessor implements OrderProcessorInterface
     }
 
     /**
-     * @param OrderInterface $order
+     * @param \Sylius\Component\Core\Model\OrderInterface $order
      *
      * @return ZoneInterface|null
      */
@@ -85,5 +93,4 @@ final class OrderDepositProcessor implements OrderProcessorInterface
 
         return $zone ?: $this->defaultTaxZoneProvider->getZone($order);
     }
-
 }

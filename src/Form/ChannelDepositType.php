@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Gweb\SyliusProductDepositPlugin\Form;
 
+use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -37,6 +38,7 @@ final class ChannelDepositType extends AbstractResourceType
         );
 
         $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($options): void {
+              /** @var ChannelDepositInterface $channelDeposit */
               $channelDeposit = $event->getData();
 
               if (!$channelDeposit instanceof $this->dataClass) {

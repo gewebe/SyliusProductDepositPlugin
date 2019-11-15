@@ -1,11 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Gweb\SyliusProductDepositPlugin\Services;
 
+use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Core\Model\OrderItemUnitInterface;
+use Sylius\Component\Core\Model\TaxRate;
+use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Order\Model\OrderItemUnitInterface;
 use Sylius\Component\Core\Taxation\Applicator\OrderTaxesApplicatorInterface;
 use Sylius\Component\Order\Factory\AdjustmentFactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -53,18 +58,24 @@ final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
      */
     public function apply(OrderInterface $order, ZoneInterface $zone): void
     {
-
+        /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
 
-            if (!$item->getVariant()->hasChannelDepositForChannel($order->getChannel())) {
+            /** @var ProductVariantInterface $variant */
+            $variant = $item->getVariant();
+
+            $channelDeposit = $variant->getChannelDepositForChannel($order->getChannel());
+            if (null == $channelDeposit) {
                 continue;
             }
 
-            $depositPrice = $item->getVariant()->getChannelDepositForChannel($order->getChannel())->getPrice();
+            $depositPrice = $channelDeposit->getPrice();
 
-            $taxCategory = $item->getVariant()->getDepositTaxCategory();
+            $taxCategory = $variant->getDepositTaxCategory();
+
+            /** @var TaxRate $taxRate */
             $taxRate = $this->taxRateRepository->findOneBy(['category' => $taxCategory, 'zone' => $zone]);
-            if (null === $taxRate) {
+            if (null == $taxRate) {
                 continue;
             }
 
