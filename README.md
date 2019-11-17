@@ -139,6 +139,6 @@ $ vendor/bin/phpstan analyse -c phpstan.neon -l max src/
 [ico-travis]: https://img.shields.io/travis/gewebe/SyliusProductDepositPlugin/master.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/gewebe/SyliusProductDepositPlugin.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/gweb/sylius-brand-plugin
+[link-packagist]: https://packagist.org/packages/gweb/sylius-product-deposit-plugin
 [link-travis]: https://travis-ci.org/gewebe/SyliusProductDepositPlugin
 [link-code-quality]: https://scrutinizer-ci.com/g/gewebe/SyliusProductDepositPlugin
