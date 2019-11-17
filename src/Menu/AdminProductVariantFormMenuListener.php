@@ -29,11 +29,11 @@ final class AdminProductVariantFormMenuListener
         $menu = $event->getMenu();
 
         $menu->addChild('deposit', ['position' => 1])
-          ->setAttribute(
-            'template',
-            '@GwebSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
-          )
-          ->setLabel($this->translator->trans('gweb_deposit.admin.product_variant.menu'))
-          ->setLabelAttribute('icon', 'dollar');
+            ->setAttribute(
+                'template',
+                '@GwebSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
+            )
+            ->setLabel($this->translator->trans('gweb_deposit.admin.product_variant.menu'))
+            ->setLabelAttribute('icon', 'dollar');
     }
 }

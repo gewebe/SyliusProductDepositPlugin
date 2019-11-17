@@ -85,7 +85,7 @@ final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
                     continue;
                 }
 
-                $this->addTaxAdjustment($unit, (int)$taxAmount, $taxRate->getLabel(), $taxRate->isIncludedInPrice());
+                $this->addTaxAdjustment($unit, (int) $taxAmount, $taxRate->getLabel(), $taxRate->isIncludedInPrice());
             }
         }
     }

@@ -27,30 +27,32 @@ class ProductVariantTypeExtension extends AbstractTypeExtension
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('depositTaxCategory', TaxCategoryChoiceType::class, [
-          'required' => false,
-          'placeholder' => '---',
-          'label' => 'gweb_deposit.admin.product_variant.tax_category',
+            'required' => false,
+            'placeholder' => '---',
+            'label' => 'gweb_deposit.admin.product_variant.tax_category',
         ]);
 
-        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
-            $productVariant = $event->getData();
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function(FormEvent $event): void {
+                $productVariant = $event->getData();
 
-            $event->getForm()->add(
-            'channelDeposits',
-            ChannelCollectionType::class,
-            [
-              'entry_type' => ChannelDepositType::class,
-              'entry_options' => function (ChannelInterface $channel) use ($productVariant) {
-                  return [
-                    'channel' => $channel,
-                    'product_variant' => $productVariant,
-                    'required' => false,
-                  ];
-              },
-              'label' => 'gweb_deposit.admin.product_variant.price',
-            ]
-            );
-          }
+                $event->getForm()->add(
+                    'channelDeposits',
+                    ChannelCollectionType::class,
+                    [
+                        'entry_type' => ChannelDepositType::class,
+                        'entry_options' => function(ChannelInterface $channel) use ($productVariant) {
+                            return [
+                                'channel' => $channel,
+                                'product_variant' => $productVariant,
+                                'required' => false,
+                            ];
+                        },
+                        'label' => 'gweb_deposit.admin.product_variant.price',
+                    ]
+                );
+            }
         );
     }
 

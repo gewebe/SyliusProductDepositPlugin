@@ -28,30 +28,32 @@ final class ChannelDepositType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add(
-          'price',
-          MoneyType::class,
-          [
-            'label' => 'gweb_deposit.admin.product_variant.price',
-            'required' => false,
-            'currency' => $options['channel']->getBaseCurrency()->getCode(),
-          ]
+            'price',
+            MoneyType::class,
+            [
+                'label' => 'gweb_deposit.admin.product_variant.price',
+                'required' => false,
+                'currency' => $options['channel']->getBaseCurrency()->getCode(),
+            ]
         );
 
-        $builder->addEventListener(FormEvents::SUBMIT, function (FormEvent $event) use ($options): void {
-              /** @var ChannelDepositInterface $channelDeposit */
-              $channelDeposit = $event->getData();
+        $builder->addEventListener(
+            FormEvents::SUBMIT,
+            function(FormEvent $event) use ($options): void {
+                /** @var ChannelDepositInterface $channelDeposit */
+                $channelDeposit = $event->getData();
 
-              if (!$channelDeposit instanceof $this->dataClass) {
-                  $event->setData(null);
+                if (!$channelDeposit instanceof $this->dataClass) {
+                    $event->setData(null);
 
-                  return;
-              }
+                    return;
+                }
 
-              $channelDeposit->setChannelCode($options['channel']->getCode());
-              $channelDeposit->setProductVariant($options['product_variant']);
+                $channelDeposit->setChannelCode($options['channel']->getCode());
+                $channelDeposit->setProductVariant($options['product_variant']);
 
-              $event->setData($channelDeposit);
-          }
+                $event->setData($channelDeposit);
+            }
         );
     }
 
@@ -63,17 +65,17 @@ final class ChannelDepositType extends AbstractResourceType
         parent::configureOptions($resolver);
 
         $resolver
-          ->setRequired('channel')
-          ->setAllowedTypes('channel', [ChannelInterface::class])
-          ->setDefined('product_variant')
-          ->setAllowedTypes('product_variant', ['null', ProductVariantInterface::class])
-          ->setDefaults(
-            [
-              'label' => function (Options $options): string {
-                  return $options['channel']->getName();
-              },
-            ]
-          );
+            ->setRequired('channel')
+            ->setAllowedTypes('channel', [ChannelInterface::class])
+            ->setDefined('product_variant')
+            ->setAllowedTypes('product_variant', ['null', ProductVariantInterface::class])
+            ->setDefaults(
+                [
+                    'label' => function(Options $options): string {
+                        return $options['channel']->getName();
+                    },
+                ]
+            );
     }
 
     /**
