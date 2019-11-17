@@ -29,16 +29,29 @@ services:
         tags:
             - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.product.show.after_price, method: onBlockEvent }
 
-    # Template helper
-    gweb_deposit.templating.helper.deposit:
-        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\DepositHelper
+    # Template sonata javascript listener
+    gweb_deposit.block_event_listener.layout.javascripts:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@GwebSyliusProductDepositPlugin/Product/Show/_deposit_javascript.html.twig'
         tags:
-            - { name: templating.helper, alias: gweb_calculate_deposit }
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }
+
+    # Product variants deposits provider
+    gweb_deposit.provider.product_variants_deposits:
+        class: Gweb\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProvider
+
+    # Template helper
+    gweb_deposit.templating.helper.product_variants_deposit:
+        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositHelper
+        arguments: ['@gweb_deposit.provider.product_variants_deposits']
+        tags:
+            - { name: templating.helper, alias: gweb_product_variants_deposit }
 
     # Template twig extension
-    gweb_deposit.twig.extension.deposit:
-        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\DepositExtension
-        arguments: ['@gweb_deposit.templating.helper.deposit']
+    gweb_deposit.twig.extension.product_variants_deposit:
+        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositExtension
+        arguments: ['@gweb_deposit.templating.helper.product_variants_deposit']
         tags:
             - { name: twig.extension }
 

@@ -6,4 +6,5 @@ gweb_deposit:
             price: Deposit price
             tax_category: Deposit tax category
     ui:
-        deposit: 'excl. deposit:'
+        deposit-excl: 'plus deposit:'
+        deposit-free: 'deposit free'

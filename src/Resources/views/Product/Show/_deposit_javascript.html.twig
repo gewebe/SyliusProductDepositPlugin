@@ -1,0 +1,44 @@
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var handleProductOptionsChangeDeposit = function handleProductOptionsChangeDeposit() {
+        $('[name*="sylius_add_to_cart[cartItem][variant]"]').on('change', function () {
+            var selector = '';
+
+            $('#sylius-product-adding-to-cart select[data-option]').each(function (index, element) {
+                var select = $(element);
+                var option = select.find('option:selected').val();
+                selector += '[data-' + select.attr('data-option') + '="' + option + '"]';
+            });
+
+            var deposit = $('#sylius-variants-pricing-deposit').find(selector).attr('data-value');
+
+            if (deposit !== undefined) {
+                $('#product-deposit span:first-child').text($('#sylius-variants-pricing-deposit').attr('data-deposit-text'));
+                $('#product-deposit .price').text(deposit);
+            } else {
+                $('#product-deposit span:first-child').text($('#sylius-variants-pricing-deposit').attr('data-deposit-free-text'));
+                $('#product-deposit .price').text('');
+            }
+        });
+    };
+
+    var handleProductVariantsChangeDeposit = function handleProductVariantsChangeDeposit() {
+        $('[name="sylius_add_to_cart[cartItem][variant]"]').on('change', function (event) {
+
+        });
+    };
+
+    $.fn.extend({
+        variantDeposits: function variantDeposits() {
+            if ($('#sylius-variants-pricing').length > 0) {
+                handleProductOptionsChangeDeposit();
+            } else if ($('#sylius-product-variants').length > 0) {
+                handleProductVariantsChangeDeposit();
+            }
+        }
+    });
+
+    $(document).variantDeposits();
+});
+</script>

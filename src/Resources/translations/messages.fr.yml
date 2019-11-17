@@ -6,4 +6,5 @@ gweb_deposit:
             price: Prix du depot
             tax_category: Catégorie de taxe de dépôt
     ui:
-        deposit: 'plus dépôt:'
+        deposit-excl: 'plus dépôt:'
+        deposit-free: 'dépôt gratuit'

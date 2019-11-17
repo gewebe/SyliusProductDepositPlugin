@@ -6,4 +6,5 @@ gweb_deposit:
             price: Pfandpreis
             tax_category: Pfand Steuerkategorie
     ui:
-        deposit: 'zzgl. Pfand:'
+        deposit-excl: 'zzgl. Pfand:'
+        deposit-free: 'Pfandfrei'
