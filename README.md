@@ -32,7 +32,7 @@ return [
 # config/packages/gweb_sylius_product_deposit.yaml
 
 imports:
-    - { resource: '@GwebSyliusProductDepositPlugin/Resources/config/config.yml'}
+    - { resource: '@GwebSyliusProductDepositPlugin/Resources/config/app/config.yml'}
 ```
 
 ### Extend `ProductVariant` entity

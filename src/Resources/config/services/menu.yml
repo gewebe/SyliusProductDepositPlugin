@@ -1,0 +1,8 @@
+services:
+
+    # Admin product variant menu listener
+    gweb_deposit.listener.admin.product_variant.form.menu_builder:
+        class: Gweb\SyliusProductDepositPlugin\Menu\AdminProductVariantFormMenuListener
+        arguments: ['@sylius.theme.translation.theme_aware_translator.inner']
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.product_variant.form, method: addItems }

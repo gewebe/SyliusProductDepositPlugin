@@ -1,0 +1,17 @@
+services:
+
+    # Template sonata product after price listener
+    gweb_deposit.block_event_listener.product.layout.after_header:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@GwebSyliusProductDepositPlugin/Product/Show/_deposit.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.product.show.after_price, method: onBlockEvent }
+
+    # Template sonata javascript listener
+    gweb_deposit.block_event_listener.layout.javascripts:
+        class: Sylius\Bundle\UiBundle\Block\BlockEventListener
+        arguments:
+            - '@@GwebSyliusProductDepositPlugin/Product/Show/_deposit_javascript.html.twig'
+        tags:
+            - { name: kernel.event_listener, event: sonata.block.event.sylius.shop.layout.javascripts, method: onBlockEvent }

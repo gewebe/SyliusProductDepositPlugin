@@ -1,0 +1,19 @@
+services:
+
+    # Order processor
+    gweb_deposit.order_processor.deposit:
+        class: Gweb\SyliusProductDepositPlugin\Services\OrderDepositProcessor
+        arguments: [
+            '@sylius.provider.channel_based_default_zone_provider',
+            '@sylius.zone_matcher',
+            '@gweb_deposit.taxation.order_deposit_taxes_applicator']
+        tags:
+            - { name: sylius.order_processor, priority: 0 }
+
+    # Order deposit tax applicator
+    gweb_deposit.taxation.order_deposit_taxes_applicator:
+        class: Gweb\SyliusProductDepositPlugin\Services\OrderDepositTaxesApplicator
+        arguments: [
+            '@sylius.tax_calculator',
+            '@sylius.factory.adjustment',
+            '@sylius.repository.tax_rate']

@@ -1,0 +1,19 @@
+services:
+
+    # Product variants deposit provider
+    gweb_deposit.provider.product_variants_deposit:
+        class: Gweb\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProvider
+
+    # Template helper
+    gweb_deposit.templating.helper.product_variants_deposit:
+        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositHelper
+        arguments: ['@gweb_deposit.provider.product_variants_deposit']
+        tags:
+            - { name: templating.helper, alias: gweb_product_variants_deposit }
+
+    # Template twig extension
+    gweb_deposit.twig.extension.product_variants_deposit:
+        class: Gweb\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositExtension
+        arguments: ['@gweb_deposit.templating.helper.product_variants_deposit']
+        tags:
+            - { name: twig.extension }

@@ -1,0 +1,16 @@
+services:
+
+    # Admin product variant form extensions
+    gweb_deposit.form.extension.type.product_variant:
+        class: Gweb\SyliusProductDepositPlugin\Form\Extension\ProductVariantTypeExtension
+        tags:
+            - { name: form.type_extension, extended_type: Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType, priority: -5 }
+
+    # Admin new deposit form type
+    gweb_deposit.form.type.channel_deposit:
+        class: Gweb\SyliusProductDepositPlugin\Form\ChannelDepositType
+        arguments:
+            - '%gweb_deposit.model.channel_deposit.class%'
+            - ['sylius']
+        tags:
+            - { name: form.type}
