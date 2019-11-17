@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Ui\Admin;
+namespace Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Admin;
 
 use Sylius\Behat\Page\Admin\ProductVariant\UpdatePage;
 
@@ -18,12 +18,12 @@ class ProductVariantUpdatePage extends UpdatePage implements ProductVariantUpdat
         return $this->getElement('deposit_tax_category')->getValue();
     }
 
-    public function specifyDeposit(string $deposit, string $channelName): void
+    public function specifyDepositPrice(string $price, string $channelName): void
     {
-        $this->getElement('deposit', ['%channelName%' => $channelName])->setValue($deposit);
+        $this->getElement('deposit', ['%channelName%' => $channelName])->setValue($price);
     }
 
-    public function getDepositForChannel(string $channelName): string
+    public function getDepositPriceForChannel(string $channelName): string
     {
         return $this->getElement('deposit', ['%channelName%' => $channelName])->getValue();
     }

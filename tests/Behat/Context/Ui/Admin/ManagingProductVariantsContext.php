@@ -6,7 +6,7 @@ namespace Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
 use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
-use Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Ui\Admin\ProductVariantUpdatePageInterface;
+use Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Admin\ProductVariantUpdatePageInterface;
 use Webmozart\Assert\Assert;
 
 final class ManagingProductVariantsContext implements Context
@@ -20,11 +20,11 @@ final class ManagingProductVariantsContext implements Context
     }
 
     /**
-     * @When /^I set the deposit to "(?:€|£|\$)([^"]+)" for "([^"]+)" channel$/
+     * @When /^I set the deposit price to "(?:€|£|\$)([^"]+)" for "([^"]+)" channel$/
      */
     public function iSetTheDepositTo(string $deposit, string $channel)
     {
-        $this->updatePage->specifyDeposit($deposit, $channel);
+        $this->updatePage->specifyDepositPrice($deposit, $channel);
     }
 
     /**
@@ -44,12 +44,12 @@ final class ManagingProductVariantsContext implements Context
     }
 
     /**
-     * @Then /^the (variant with code "[^"]+") should have a deposit with "(?:€|£|\$)([^"]+)" for channel "([^"]+)"$/
+     * @Then /^the (variant with code "[^"]+") should have a deposit price with "(?:€|£|\$)([^"]+)" for channel "([^"]+)"$/
      */
-    public function thisVariantShouldHaveADepositWith(ProductVariantInterface $productVariant, string $deposit, string $channel)
+    public function thisVariantShouldHaveADepositWith(ProductVariantInterface $productVariant, string $price, string $channel)
     {
         $this->updatePage->open(['id' => $productVariant->getId(), 'productId' => $productVariant->getProduct()->getId()]);
 
-        Assert::eq($deposit, $this->updatePage->getDepositForChannel($channel));
+        Assert::eq($price, $this->updatePage->getDepositPriceForChannel($channel));
     }
 }
