@@ -38,9 +38,9 @@ final class ProductDepositContext implements Context
     }
 
     /**
-     * @Given /^(this variant) has a deposit tax category with code ("[^"]+")$/
+     * @Given /^(this variant) deposit is in the ("[^"]+" tax category)$/
      */
-    public function thisVariantHasDepositTaxCategoryWithCode(ProductVariantInterface $productVariant, TaxCategoryInterface $taxCategory)
+    public function thisVariantDepositIsInTheTaxCategory(ProductVariantInterface $productVariant, TaxCategoryInterface $taxCategory)
     {
         $productVariant->setDepositTaxCategory($taxCategory);
 
