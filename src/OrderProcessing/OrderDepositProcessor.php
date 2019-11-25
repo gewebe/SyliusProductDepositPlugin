@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Services;
+namespace Gweb\SyliusProductDepositPlugin\OrderProcessing;
 
 use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Matcher\ZoneMatcherInterface;
@@ -10,6 +10,7 @@ use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\Scope;
 use Sylius\Component\Core\Provider\ZoneProviderInterface;
+use Sylius\Component\Core\Taxation\Applicator\OrderTaxesApplicatorInterface;
 use Sylius\Component\Order\Model\OrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 
@@ -31,19 +32,19 @@ final class OrderDepositProcessor implements OrderProcessorInterface
     private $zoneMatcher;
 
     /**
-     * @var OrderDepositTaxesApplicator
+     * @var OrderTaxesApplicatorInterface
      */
     private $orderDepositTaxesApplicator;
 
     /**
      * @param ZoneProviderInterface $defaultTaxZoneProvider
      * @param ZoneMatcherInterface $zoneMatcher
-     * @param OrderDepositTaxesApplicator $orderDepositTaxesApplicator
+     * @param OrderTaxesApplicatorInterface $orderDepositTaxesApplicator
      */
     public function __construct(
         ZoneProviderInterface $defaultTaxZoneProvider,
         ZoneMatcherInterface $zoneMatcher,
-        OrderDepositTaxesApplicator $orderDepositTaxesApplicator
+        OrderTaxesApplicatorInterface $orderDepositTaxesApplicator
     ) {
         $this->defaultTaxZoneProvider = $defaultTaxZoneProvider;
         $this->zoneMatcher = $zoneMatcher;

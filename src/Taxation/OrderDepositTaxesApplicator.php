@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Services;
+namespace Gweb\SyliusProductDepositPlugin\Taxation;
 
 use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;
