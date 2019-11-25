@@ -6,7 +6,6 @@ namespace spec\Gweb\SyliusProductDepositPlugin\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
-
 use Gweb\SyliusProductDepositPlugin\Entity\ProductVariant;
 use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use PhpSpec\ObjectBehavior;
