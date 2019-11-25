@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Gweb\SyliusProductDepositPlugin\Menu;
 
 use Sylius\Bundle\AdminBundle\Event\ProductVariantMenuBuilderEvent;
-use Symfony\Component\Translation\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Adding the deposit point to the product variant menu
@@ -15,11 +15,11 @@ use Symfony\Component\Translation\Translator;
 final class AdminProductVariantFormMenuListener
 {
     /**
-     * @var Translator
+     * @var TranslatorInterface
      */
     private $translator;
 
-    public function __construct(Translator $translator)
+    public function __construct(TranslatorInterface $translator)
     {
         $this->translator = $translator;
     }
