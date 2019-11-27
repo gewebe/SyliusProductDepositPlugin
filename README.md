@@ -134,7 +134,7 @@ $ vendor/bin/phpspec run
 $ vendor/bin/phpstan analyse -c phpstan.neon -l max src/
 ```
 
-[ico-version]: https://img.shields.io/packagist/v/gweb/gweb-product-deposit-plugin.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/gweb/sylius-product-deposit-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/gewebe/SyliusProductDepositPlugin/master.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/gewebe/SyliusProductDepositPlugin.svg?style=flat-square
