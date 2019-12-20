@@ -22,12 +22,12 @@ class ChannelDeposit implements ChannelDepositInterface
     private $price;
 
     /**
-     * @var string|null
+     * @var string
      */
     private $channelCode;
 
     /**
-     * @var ProductVariantInterface
+     * @var ProductVariantInterface|null
      */
     private $productVariant;
 
@@ -58,7 +58,7 @@ class ChannelDeposit implements ChannelDepositInterface
     /**
      * @param int $price
      */
-    public function setPrice(?int $price): void
+    public function setPrice(int $price): void
     {
         $this->price = $price;
     }
@@ -72,7 +72,7 @@ class ChannelDeposit implements ChannelDepositInterface
     }
 
     /**
-     * @param ProductVariantInterface $productVariants
+     * @param ProductVariantInterface|null $productVariants
      */
     public function setProductVariant(?ProductVariantInterface $productVariants): void
     {
@@ -88,9 +88,9 @@ class ChannelDeposit implements ChannelDepositInterface
     }
 
     /**
-     * @param string|null $channelCode
+     * @param string $channelCode
      */
-    public function setChannelCode(?string $channelCode): void
+    public function setChannelCode(string $channelCode): void
     {
         $this->channelCode = $channelCode;
     }

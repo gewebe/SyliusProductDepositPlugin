@@ -124,7 +124,7 @@ trait ProductVariantDepositTrait
     /**
      * @param TaxCategoryInterface $depositTaxCategory
      */
-    public function setDepositTaxCategory(?TaxCategoryInterface $depositTaxCategory): void
+    public function setDepositTaxCategory(TaxCategoryInterface $depositTaxCategory): void
     {
         $this->depositTaxCategory = $depositTaxCategory;
     }

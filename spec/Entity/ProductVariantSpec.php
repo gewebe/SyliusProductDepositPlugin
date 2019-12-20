@@ -50,8 +50,6 @@ final class ProductVariantSpec extends ObjectBehavior
     function it_has_tax_category(TaxCategoryInterface $taxCategory): void
     {
         $this->getDepositTaxCategory()->shouldReturn(null);
-        $this->setDepositTaxCategory(null);
-
         $this->setDepositTaxCategory($taxCategory);
         $this->getDepositTaxCategory()->shouldReturn($taxCategory);
     }

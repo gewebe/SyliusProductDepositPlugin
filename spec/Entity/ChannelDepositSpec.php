@@ -24,7 +24,6 @@ final class ChannelDepositSpec extends ObjectBehavior
     function it_has_price(): void
     {
         $this->getPrice()->shouldReturn(null);
-        $this->setPrice(null);
         $this->setPrice(25);
         $this->getPrice()->shouldReturn(25);
     }
@@ -32,7 +31,6 @@ final class ChannelDepositSpec extends ObjectBehavior
     function it_has_product_variant(ProductVariantInterface $productVariant): void
     {
         $this->getProductVariant()->shouldReturn(null);
-        $this->setProductVariant(null);
         $this->setProductVariant($productVariant);
         $this->getProductVariant()->shouldReturn($productVariant);
     }

@@ -65,5 +65,5 @@ interface ProductVariantInterface extends BaseProductVariantInterface
     /**
      * @param TaxCategoryInterface $depositTaxCategory
      */
-    public function setDepositTaxCategory(?TaxCategoryInterface $depositTaxCategory): void;
+    public function setDepositTaxCategory(TaxCategoryInterface $depositTaxCategory): void;
 }

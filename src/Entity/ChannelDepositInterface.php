@@ -21,7 +21,7 @@ interface ChannelDepositInterface extends ResourceInterface
     /**
      * @param int $price
      */
-    public function setPrice(?int $price): void;
+    public function setPrice(int $price): void;
 
     /**
      * @return ProductVariantInterface|null
@@ -39,7 +39,7 @@ interface ChannelDepositInterface extends ResourceInterface
     public function getChannelCode(): ?string;
 
     /**
-     * @param string|null $channelCode
+     * @param string $channelCode
      */
-    public function setChannelCode(?string $channelCode): void;
+    public function setChannelCode(string $channelCode): void;
 }
