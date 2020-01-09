@@ -1,4 +1,4 @@
-Gweb\SyliusProductDepositPlugin\Entity\ProductVariant:
+App\Entity\Product\ProductVariant:
     type: entity
     table: sylius_product_variant
     manyToOne:

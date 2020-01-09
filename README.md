@@ -30,7 +30,7 @@ Register the plugin by adding it to your `config/bundles.php` file
 
 return [
     // ...
-    \Gweb\SyliusProductDepositPlugin\GwebSyliusProductDepositPlugin::class => ['all' => true],
+    Gweb\SyliusProductDepositPlugin\GwebSyliusProductDepositPlugin::class => ['all' => true],
 ];
 ```
 
@@ -47,56 +47,57 @@ imports:
 
 - If you use `annotations` mapping:
 
-    ```php
-    <?php
+```php
+# src/Entity/Product/ProductVariant.php
 
-    declare(strict_types=1);
+namespace App\Entity\Product;
 
-    namespace App\Entity\Product;
+use Doctrine\ORM\Mapping as ORM;
+use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface as ProductVariantDepositInterface;
+use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantDepositTrait;
+use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
 
-    use Doctrine\ORM\Mapping as ORM;
-    use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface as ProductVariantDepositInterface;
-    use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantDepositTrait;
-    use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="sylius_product_variant")
+ */
+class ProductVariant extends BaseProductVariant implements ProductVariantDepositInterface
+{
+    use ProductVariantDepositTrait;
 
-    /**
-     * @ORM\Entity
-     * @ORM\Table(name="sylius_product_variant")
-     */
-    class ProductVariant extends BaseProductVariant implements ProductVariantDepositInterface
+    public function __construct()
     {
-        use ProductVariantDepositTrait;
+        parent::__construct();
 
-        public function __construct()
-        {
-            parent::__construct();
+        $this->initProductVariantDepositTrait();
+    }
 
-            $this->initProductVariantDepositTrait();
-        }
-    ```
+    // ...
+}
+```
 
 - If you use `yaml` mapping add also:
 
-    ```yaml
-    App\Entity\ProductVariant:
-        type: entity
-        table: sylius_product_variant
-        manyToOne:
-            depositTaxCategory:
-                targetEntity: Sylius\Component\Taxation\Model\TaxCategoryInterface
-                joinColumn:
-                    name: deposit_tax_category_id
-                    referencedColumnName: id
-                    onDelete: SET NULL
-        oneToMany:
-            channelDeposits:
-                targetEntity: Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
-                mappedBy: productVariant
-                orphanRemoval: true
-                indexBy: channelCode
-                cascade:
-                    - all
-    ```
+```yaml
+App\Entity\Product\ProductVariant:
+    type: entity
+    table: sylius_product_variant
+    manyToOne:
+        depositTaxCategory:
+            targetEntity: Sylius\Component\Taxation\Model\TaxCategoryInterface
+            joinColumn:
+                name: deposit_tax_category_id
+                referencedColumnName: id
+                onDelete: SET NULL
+    oneToMany:
+        channelDeposits:
+            targetEntity: Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
+            mappedBy: productVariant
+            orphanRemoval: true
+            indexBy: channelCode
+            cascade:
+                - all
+```
 
 ### Update your database schema
 
