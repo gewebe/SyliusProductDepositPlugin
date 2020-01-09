@@ -7,4 +7,4 @@ sylius_product:
   resources:
     product_variant:
       classes:
-        model: Gweb\SyliusProductDepositPlugin\Entity\ProductVariant
+        model: Tests\Gweb\SyliusProductDepositPlugin\Application\Entity\ProductVariant
