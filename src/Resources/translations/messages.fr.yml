@@ -1,10 +1,10 @@
 gweb_deposit:
     admin:
         product_variant:
-            menu: Dépôt
-            tab: Dépôt
-            price: Prix du depot
-            tax_category: Catégorie de taxe de dépôt
+            menu: Consigne
+            tab: Consigne
+            price: Prix de la consigne
+            tax_category: Catégorie de taxe de la consigne
     ui:
-        deposit-excl: 'plus dépôt:'
-        deposit-free: 'dépôt gratuit'
+        deposit-excl: 'consigne : '
+        deposit-free: 'consigne gratuite'
