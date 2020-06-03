@@ -73,7 +73,7 @@ final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
 
             $taxCategory = $variant->getDepositTaxCategory();
 
-            /** @var TaxRate $taxRate */
+            /** @var TaxRate|null $taxRate */
             $taxRate = $this->taxRateRepository->findOneBy(['category' => $taxCategory, 'zone' => $zone]);
             if (null == $taxRate) {
                 continue;

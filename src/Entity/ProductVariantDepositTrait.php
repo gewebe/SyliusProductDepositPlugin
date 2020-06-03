@@ -18,13 +18,15 @@ use Sylius\Component\Taxation\Model\TaxCategoryInterface;
  */
 trait ProductVariantDepositTrait
 {
-    public function initProductVariantDepositTrait()
+    public function initProductVariantDepositTrait(): void
     {
         $this->channelDeposits = new ArrayCollection();
     }
 
     /**
      * @var Collection
+     *
+     * @psalm-var Collection<array-key, ChannelDepositInterface>
      *
      * @ORM\OneToMany(
      *     targetEntity="\Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface",
@@ -46,7 +48,9 @@ trait ProductVariantDepositTrait
 
     /**
      * Returns all deposit elements for all channels
-     * @return Collection
+     * @return Collection|ChannelDepositInterface[]
+     *
+     * @psalm-return Collection<array-key, ChannelDepositInterface>
      */
     public function getChannelDeposits(): Collection
     {

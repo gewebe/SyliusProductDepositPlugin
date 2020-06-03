@@ -18,7 +18,9 @@ interface ProductVariantInterface extends BaseProductVariantInterface
 {
     /**
      * Returns all deposit elements for all channels
-     * @return Collection
+     * @return Collection|ChannelDepositInterface[]
+     *
+     * @psalm-return Collection<array-key, ChannelDepositInterface>
      */
     public function getChannelDeposits(): Collection;
 
