@@ -1,5 +1,4 @@
 imports:
-    - { resource: "services/event_listener.yml" }
     - { resource: "services/form.yml" }
     - { resource: "services/menu.yml" }
     - { resource: "services/order.yml" }

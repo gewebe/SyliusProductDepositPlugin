@@ -1,7 +1,5 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 
-{% set product = settings.product %}
-
 {% if not product.variants.empty() %}
     {% set variants_deposit = gweb_product_variant_deposit(product, sylius.channel) %}
 

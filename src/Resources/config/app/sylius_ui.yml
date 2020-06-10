@@ -1,0 +1,12 @@
+
+sylius_ui:
+  events:
+    sylius.shop.product.show.right_sidebar:
+      blocks:
+        deposit:
+          template: '@GwebSyliusProductDepositPlugin/Product/Show/_deposit.html.twig'
+          priority: 29
+
+    sylius.shop.layout.javascripts:
+      blocks:
+        deposit: '@GwebSyliusProductDepositPlugin/Product/Show/_deposit_javascript.html.twig'
