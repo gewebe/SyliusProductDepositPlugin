@@ -17,14 +17,14 @@ final class ProductVariantsDepositExtension extends AbstractExtension
     /**
      * @var ProductVariantsDepositHelper
      */
-    private $helproductVariantsDepositHelperer;
+    private $productVariantsDepositHelper;
 
     /**
      * @param ProductVariantsDepositHelper $productVariantsDepositHelper
      */
     public function __construct(ProductVariantsDepositHelper $productVariantsDepositHelper)
     {
-        $this->helproductVariantsDepositHelperer = $productVariantsDepositHelper;
+        $this->productVariantsDepositHelper = $productVariantsDepositHelper;
     }
 
     /**
@@ -33,8 +33,8 @@ final class ProductVariantsDepositExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
-            new TwigFunction('gweb_calculate_deposit', [$this->helproductVariantsDepositHelperer, 'getDeposit']),
-            new TwigFunction('gweb_product_variant_deposit', [$this->helproductVariantsDepositHelperer, 'getDepositsByProduct']),
+            new TwigFunction('gweb_calculate_deposit', [$this->productVariantsDepositHelper, 'getDeposit']),
+            new TwigFunction('gweb_product_variant_deposit', [$this->productVariantsDepositHelper, 'getDepositsByProduct']),
         ];
     }
 }

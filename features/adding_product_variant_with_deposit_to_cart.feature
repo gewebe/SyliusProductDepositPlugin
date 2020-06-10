@@ -19,7 +19,7 @@ Feature: Adding a product with deposit price to the cart
 
     @ui
     Scenario: Browse a product with deposit price
-        When I select "1 Lite" variant
+        When I select "1 Liter" variant
         Then the product deposit price should be "$0.50"
 
     @ui
