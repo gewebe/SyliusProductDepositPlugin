@@ -5,8 +5,10 @@
     "jquery": "^3.2.0",
     "jquery.dirtyforms": "^2.0.0",
     "lightbox2": "^2.9.0",
+    "node-sass": "^4.14.1",
     "semantic-ui-css": "^2.2.0",
-    "slick-carousel": "^1.8.1"
+    "slick-carousel": "^1.8.1",
+    "webpack": "^4.43.0"
   },
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.0",
