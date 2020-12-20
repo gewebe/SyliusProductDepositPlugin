@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Gweb\SyliusProductDepositPlugin\Provider;
 
+use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -33,7 +34,7 @@ final class ProductVariantsDepositsProvider implements ProductVariantsDepositsPr
         }
 
         $channelDeposit = $variant->getChannelDepositForChannel($channel);
-        if ($channelDeposit) {
+        if ($channelDeposit instanceof ChannelDepositInterface) {
             $optionMap['value'] = $channelDeposit->getPrice();
         }
 

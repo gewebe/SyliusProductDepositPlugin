@@ -11,8 +11,10 @@ use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\Scope;
 use Sylius\Component\Core\Provider\ZoneProviderInterface;
 use Sylius\Component\Core\Taxation\Applicator\OrderTaxesApplicatorInterface;
-use Sylius\Component\Order\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
+use Webmozart\Assert\Assert;
 
 /**
  * Recalculates the order item unit price inclusive deposit
@@ -51,12 +53,14 @@ final class OrderDepositProcessor implements OrderProcessorInterface
         $this->orderDepositTaxesApplicator = $orderDepositTaxesApplicator;
     }
 
-    /**
-     * @param \Sylius\Component\Core\Model\OrderInterface $order
-     */
-    public function process(OrderInterface $order): void
+    public function process(BaseOrderInterface $order): void
     {
+        Assert::isInstanceOf($order, OrderInterface::class);
+
         $channel = $order->getChannel();
+        if (null === $channel) {
+            return;
+        }
 
         /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
@@ -65,17 +69,23 @@ final class OrderDepositProcessor implements OrderProcessorInterface
             $variant = $item->getVariant();
 
             $channelDeposit = $variant->getChannelDepositForChannel($channel);
-            if (null == $channelDeposit) {
+            if (null === $channelDeposit) {
                 continue;
             }
 
             $depositPrice = $channelDeposit->getPrice();
+            if (null === $depositPrice) {
+                continue;
+            }
 
             $item->setUnitPrice($item->getUnitPrice() + $depositPrice);
         }
 
         // apply deposit taxes
-        $this->orderDepositTaxesApplicator->apply($order, $this->getTaxZone($order));
+        $zone = $this->getTaxZone($order);
+        if (null !== $zone) {
+            $this->orderDepositTaxesApplicator->apply($order, $zone);
+        }
     }
 
     /**
@@ -92,6 +102,6 @@ final class OrderDepositProcessor implements OrderProcessorInterface
             $zone = $this->zoneMatcher->match($shippingAddress, Scope::TAX);
         }
 
-        return $zone ?: $this->defaultTaxZoneProvider->getZone($order);
+        return $zone ?? $this->defaultTaxZoneProvider->getZone($order);
     }
 }

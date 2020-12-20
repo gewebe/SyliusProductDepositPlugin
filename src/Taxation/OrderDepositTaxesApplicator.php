@@ -64,12 +64,15 @@ final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
             /** @var ProductVariantInterface $variant */
             $variant = $item->getVariant();
 
-            $channelDeposit = $variant->getChannelDepositForChannel($order->getChannel());
-            if (null == $channelDeposit) {
+            $channel = $order->getChannel();
+            if (null == $channel) {
                 continue;
             }
 
-            $depositPrice = $channelDeposit->getPrice();
+            $channelDeposit = $variant->getChannelDepositForChannel($channel);
+            if (null == $channelDeposit) {
+                continue;
+            }
 
             $taxCategory = $variant->getDepositTaxCategory();
 
@@ -80,12 +83,17 @@ final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
             }
 
             foreach ($item->getUnits() as $unit) {
-                $taxAmount = $this->calculator->calculate($depositPrice, $taxRate);
+                $taxAmount = $this->calculator->calculate((float) $channelDeposit->getPrice(), $taxRate);
                 if (0.00 === $taxAmount) {
                     continue;
                 }
 
-                $this->addTaxAdjustment($unit, (int) $taxAmount, $taxRate->getLabel(), $taxRate->isIncludedInPrice());
+                $this->addTaxAdjustment(
+                    $unit,
+                    (int) $taxAmount,
+                    (string) $taxRate->getLabel(),
+                    $taxRate->isIncludedInPrice()
+                );
             }
         }
     }

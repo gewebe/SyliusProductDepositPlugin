@@ -64,8 +64,10 @@ trait ProductVariantDepositTrait
      */
     public function getChannelDepositForChannel(ChannelInterface $channel): ?ChannelDepositInterface
     {
-        if ($this->channelDeposits->containsKey($channel->getCode())) {
-            return $this->channelDeposits->get($channel->getCode());
+        $channelCode = $channel->getCode();
+
+        if ($channelCode !== null && $this->channelDeposits->containsKey($channelCode)) {
+            return $this->channelDeposits->get($channelCode);
         }
 
         return null;
@@ -98,9 +100,11 @@ trait ProductVariantDepositTrait
      */
     public function addChannelDeposit(ChannelDepositInterface $channelDeposit): void
     {
-        if (!$this->hasChannelDeposit($channelDeposit)) {
+        $channelCode = $channelDeposit->getChannelCode();
+
+        if ($channelCode !== null && !$this->hasChannelDeposit($channelDeposit)) {
             $channelDeposit->setProductVariant($this);
-            $this->channelDeposits->set($channelDeposit->getChannelCode(), $channelDeposit);
+            $this->channelDeposits->set($channelCode, $channelDeposit);
         }
     }
 
@@ -111,9 +115,11 @@ trait ProductVariantDepositTrait
      */
     public function removeChannelDeposit(ChannelDepositInterface $channelDeposit): void
     {
-        if ($this->hasChannelDeposit($channelDeposit)) {
+        $channelCode = $channelDeposit->getChannelCode();
+
+        if ($channelCode !== null && $this->hasChannelDeposit($channelDeposit)) {
             $channelDeposit->setProductVariant(null);
-            $this->channelDeposits->remove($channelDeposit->getChannelCode());
+            $this->channelDeposits->remove($channelCode);
         }
     }
 

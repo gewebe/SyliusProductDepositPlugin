@@ -42,7 +42,7 @@ class ProductVariantTypeExtension extends AbstractTypeExtension
                     ChannelCollectionType::class,
                     [
                         'entry_type' => ChannelDepositType::class,
-                        'entry_options' => function(ChannelInterface $channel) use ($productVariant) {
+                        'entry_options' => function(ChannelInterface $channel) use ($productVariant): array {
                             return [
                                 'channel' => $channel,
                                 'product_variant' => $productVariant,
