@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Setup;
+namespace Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDeposit;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDeposit;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 

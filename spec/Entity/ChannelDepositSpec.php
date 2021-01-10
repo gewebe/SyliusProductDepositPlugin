@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace spec\Gweb\SyliusProductDepositPlugin\Entity;
+namespace spec\Gewebe\SyliusProductDepositPlugin\Entity;
 
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDeposit;
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDeposit;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use PhpSpec\ObjectBehavior;
 
 final class ChannelDepositSpec extends ObjectBehavior

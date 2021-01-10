@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Provider;
+namespace Gewebe\SyliusProductDepositPlugin\Provider;
 
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;

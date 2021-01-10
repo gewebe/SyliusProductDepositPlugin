@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Ui\Shop;
+namespace Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Ui\Shop;
 
 use Behat\Behat\Context\Context;
-use Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Shop\Product\ShowPageInterface;
+use Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Shop\Product\ShowPageInterface;
 use Webmozart\Assert\Assert;
 
 final class ProductContext implements Context

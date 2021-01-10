@@ -1,17 +1,17 @@
 {% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
 
 {% if not product.variants.empty() %}
-    {% set variants_deposit = gweb_product_variant_deposit(product, sylius.channel) %}
+    {% set variants_deposit = gewebe_product_variant_deposit(product, sylius.channel) %}
 
     {% if variants_deposit|length > 0 %}
-        {% set deposit = gweb_calculate_deposit(product|sylius_resolve_variant, sylius.channel) %}
+        {% set deposit = gewebe_calculate_deposit(product|sylius_resolve_variant, sylius.channel) %}
         <p id="product-deposit">
-            <span>{% if deposit %}{{ 'gweb_deposit.ui.deposit-excl'|trans }}{% else %}{{ 'gweb_deposit.ui.deposit-free'|trans }}{% endif %}</span>
+            <span>{% if deposit %}{{ 'gewebe_sylius_product_deposit_plugin.ui.deposit-excl'|trans }}{% else %}{{ 'gewebe_sylius_product_deposit_plugin.ui.deposit-free'|trans }}{% endif %}</span>
             <span class="price">{% if deposit %}{{ money.convertAndFormat(deposit) }}{% endif %}</span>
         </p>
 
         {% if product.isConfigurable() and product.getVariantSelectionMethod() == 'match' and not product.variants.empty() %}
-            <div id="sylius-variants-pricing-deposit" data-deposit-text="{{ 'gweb_deposit.ui.deposit-excl'|trans }}" data-deposit-free-text="{{ 'gweb_deposit.ui.deposit-free'|trans }}">
+            <div id="sylius-variants-pricing-deposit" data-deposit-text="{{ 'gewebe_sylius_product_deposit_plugin.ui.deposit-excl'|trans }}" data-deposit-free-text="{{ 'gewebe_sylius_product_deposit_plugin.ui.deposit-free'|trans }}">
                 {% for deposit in variants_deposit %}
                     <div {% for option, value in deposit %}data-{{ option }}="{% if option == 'value' %}{{ money.convertAndFormat(value) }}{% else %}{{ value|replace({'\"': '\''}) }}{% endif %}" {% endfor %}></div>
                 {% endfor %}

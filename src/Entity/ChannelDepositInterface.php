@@ -2,14 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Entity;
+namespace Gewebe\SyliusProductDepositPlugin\Entity;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 /**
  * Interface for product variant deposit
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 interface ChannelDepositInterface extends ResourceInterface
 {

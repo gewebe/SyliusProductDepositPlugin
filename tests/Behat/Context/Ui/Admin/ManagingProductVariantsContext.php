@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Ui\Admin;
+namespace Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
-use Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Admin\ProductVariantUpdatePageInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Admin\ProductVariantUpdatePageInterface;
 use Webmozart\Assert\Assert;
 
 final class ManagingProductVariantsContext implements Context

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Entity;
+namespace Gewebe\SyliusProductDepositPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -13,8 +13,6 @@ use Sylius\Component\Taxation\Model\TaxCategoryInterface;
  * Trait that implements the deposit functionality
  * Used in:
  * <li>@see ProductVariant</li>
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 trait ProductVariantDepositTrait
 {
@@ -29,7 +27,7 @@ trait ProductVariantDepositTrait
      * @psalm-var Collection<array-key, ChannelDepositInterface>
      *
      * @ORM\OneToMany(
-     *     targetEntity="\Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface",
+     *     targetEntity="\Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface",
      *     mappedBy="productVariant",
      *     indexBy="channelCode",
      *     cascade={"all"},

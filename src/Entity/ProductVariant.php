@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Entity;
+namespace Gewebe\SyliusProductDepositPlugin\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface as DepositProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface as DepositProductVariantInterface;
 use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
 
 /**
  * Entity for the product variant with deposits implemented as trait
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  *
  * @ORM\Entity
  * @ORM\Table(name="sylius_product_variant")

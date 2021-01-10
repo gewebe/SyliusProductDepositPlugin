@@ -1,5 +1,5 @@
 {
-    "name": "gweb/sylius-product-deposit-plugin",
+    "name": "gewebe/sylius-product-deposit-plugin",
     "type": "sylius-plugin",
     "keywords": ["sylius", "sylius-plugin"],
     "description": "A Sylius plugin that allows products with deposit price",
@@ -40,8 +40,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Gweb\\SyliusProductDepositPlugin\\": "src/",
-            "Tests\\Gweb\\SyliusProductDepositPlugin\\": "tests/"
+            "Gewebe\\SyliusProductDepositPlugin\\": "src/",
+            "Tests\\Gewebe\\SyliusProductDepositPlugin\\": "tests/"
         }
     },
     "autoload-dev": {

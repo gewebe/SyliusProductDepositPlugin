@@ -2,12 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Entity;
+namespace Gewebe\SyliusProductDepositPlugin\Entity;
 
 /**
  * Entity that stores deposit for product variants
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 class ChannelDeposit implements ChannelDepositInterface
 {

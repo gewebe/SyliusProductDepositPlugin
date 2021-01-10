@@ -1,5 +1,5 @@
 imports:
-    - { resource: "@GwebSyliusProductDepositPlugin/Resources/config/app/config.yml" }
+    - { resource: "@GewebeSyliusProductDepositPlugin/Resources/config/app/config.yml" }
     - { resource: "../../Behat/Resources/services.yml" }
     - { resource: "../../../vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml" }
 
@@ -7,4 +7,4 @@ sylius_product:
   resources:
     product_variant:
       classes:
-        model: Tests\Gweb\SyliusProductDepositPlugin\Application\Entity\ProductVariant
+        model: Tests\Gewebe\SyliusProductDepositPlugin\Application\Entity\ProductVariant

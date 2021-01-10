@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Form\Extension;
+namespace Gewebe\SyliusProductDepositPlugin\Form\Extension;
 
-use Gweb\SyliusProductDepositPlugin\Form\ChannelDepositType;
+use Gewebe\SyliusProductDepositPlugin\Form\ChannelDepositType;
 use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType;
 use Sylius\Bundle\TaxationBundle\Form\Type\TaxCategoryChoiceType;
@@ -16,8 +16,6 @@ use Symfony\Component\Form\FormEvents;
 
 /**
  * Extending the product variant form type and adding deposit
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 class ProductVariantTypeExtension extends AbstractTypeExtension
 {
@@ -29,7 +27,7 @@ class ProductVariantTypeExtension extends AbstractTypeExtension
         $builder->add('depositTaxCategory', TaxCategoryChoiceType::class, [
             'required' => false,
             'placeholder' => '---',
-            'label' => 'gweb_deposit.admin.product_variant.tax_category',
+            'label' => 'gewebe_sylius_product_deposit_plugin.admin.product_variant.tax_category',
         ]);
 
         $builder->addEventListener(
@@ -49,7 +47,7 @@ class ProductVariantTypeExtension extends AbstractTypeExtension
                                 'required' => false,
                             ];
                         },
-                        'label' => 'gweb_deposit.admin.product_variant.price',
+                        'label' => 'gewebe_sylius_product_deposit_plugin.admin.product_variant.price',
                     ]
                 );
             }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Form;
+namespace Gewebe\SyliusProductDepositPlugin\Form;
 
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -17,8 +17,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
  * Form type for the deposit entity
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 final class ChannelDepositType extends AbstractResourceType
 {
@@ -31,7 +29,7 @@ final class ChannelDepositType extends AbstractResourceType
             'price',
             MoneyType::class,
             [
-                'label' => 'gweb_deposit.admin.product_variant.price',
+                'label' => 'gewebe_product_deposit_plugin.admin.product_variant.price',
                 'required' => false,
                 'currency' => $options['channel']->getBaseCurrency()->getCode(),
             ]
@@ -83,6 +81,6 @@ final class ChannelDepositType extends AbstractResourceType
      */
     public function getBlockPrefix(): string
     {
-        return 'gweb_channel_deposit';
+        return 'gewebe_channel_deposit';
     }
 }

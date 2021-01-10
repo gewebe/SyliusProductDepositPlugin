@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\DependencyInjection;
+namespace Gewebe\SyliusProductDepositPlugin\DependencyInjection;
 
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\FileLocator;
@@ -10,7 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
-final class GwebSyliusProductDepositExtension extends Extension
+final class GewebeSyliusProductDepositExtension extends Extension
 {
     /**
      * {@inheritdoc}

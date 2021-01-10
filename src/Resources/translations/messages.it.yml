@@ -1,4 +1,4 @@
-gweb_deposit:
+gewebe_sylius_product_deposit_plugin:
     admin:
         product_variant:
             menu: Deposito

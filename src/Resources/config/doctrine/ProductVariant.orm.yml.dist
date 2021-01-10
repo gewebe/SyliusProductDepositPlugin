@@ -10,7 +10,7 @@ App\Entity\Product\ProductVariant:
                 onDelete: SET NULL
     oneToMany:
         channelDeposits:
-            targetEntity: Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
+            targetEntity: Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
             mappedBy: productVariant
             orphanRemoval: true
             indexBy: channelCode

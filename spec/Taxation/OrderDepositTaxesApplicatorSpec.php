@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace spec\Gweb\SyliusProductDepositPlugin\Taxation;
+namespace spec\Gewebe\SyliusProductDepositPlugin\Taxation;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
-use Gweb\SyliusProductDepositPlugin\Taxation\OrderDepositTaxesApplicator;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Taxation\OrderDepositTaxesApplicator;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\AdjustmentInterface;

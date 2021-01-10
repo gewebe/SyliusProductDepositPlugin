@@ -3,13 +3,13 @@
 #  resources:
 #    product_variant:
 #      classes:
-#        model: Gweb\SyliusProductDepositPlugin\Entity\ProductVariant
+#        model: Gewebe\SyliusProductDepositPlugin\Entity\ProductVariant
 
 # New channel deposit resources
 sylius_resource:
   resources:
-    gweb_deposit.channel_deposit:
+    gewebe_product_variant_deposit.channel_deposit:
       classes:
-        model: Gweb\SyliusProductDepositPlugin\Entity\ChannelDeposit
-        interface: Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
-        form: Gweb\SyliusProductDepositPlugin\Form\ChannelDepositType
+        model: Gewebe\SyliusProductDepositPlugin\Entity\ChannelDeposit
+        interface: Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
+        form: Gewebe\SyliusProductDepositPlugin\Form\ChannelDepositType

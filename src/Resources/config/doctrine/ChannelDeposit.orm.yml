@@ -1,6 +1,6 @@
-Gweb\SyliusProductDepositPlugin\Entity\ChannelDeposit:
+Gewebe\SyliusProductDepositPlugin\Entity\ChannelDeposit:
     type: entity
-    table: gweb_channel_deposit
+    table: gewebe_channel_deposit
     id:
         id:
             type: integer
@@ -22,7 +22,7 @@ Gweb\SyliusProductDepositPlugin\Entity\ChannelDeposit:
                 - channel_code
     manyToOne:
         productVariant:
-            targetEntity: Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface
+            targetEntity: Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface
             inversedBy: channelDeposits
             joinColumn:
                 name: product_variant_id

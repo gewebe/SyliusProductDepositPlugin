@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Admin;
+namespace Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Admin;
 
 use Sylius\Behat\Page\Admin\ProductVariant\UpdatePage;
 

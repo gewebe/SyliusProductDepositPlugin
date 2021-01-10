@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace spec\Gweb\SyliusProductDepositPlugin\OrderProcessing;
+namespace spec\Gewebe\SyliusProductDepositPlugin\OrderProcessing;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
-use Gweb\SyliusProductDepositPlugin\OrderProcessing\OrderDepositProcessor;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\OrderProcessing\OrderDepositProcessor;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Addressing\Matcher\ZoneMatcherInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;

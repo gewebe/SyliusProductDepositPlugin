@@ -19,7 +19,7 @@ For example: deposit for bottles, cans, pallets, batteries or car replacement pa
 
 ### Download the plugin via composer
 ```bash
-composer require gweb/sylius-product-deposit-plugin
+composer require gewebe/sylius-product-deposit-plugin
 ```
 
 ### Enable the plugin
@@ -30,17 +30,17 @@ Register the plugin by adding it to your `config/bundles.php` file
 
 return [
     // ...
-    Gweb\SyliusProductDepositPlugin\GwebSyliusProductDepositPlugin::class => ['all' => true],
+    Gewebe\SyliusProductDepositPlugin\GewebeSyliusProductDepositPlugin::class => ['all' => true],
 ];
 ```
 
 ### Configure the plugin
 
 ```yaml
-# config/packages/gweb_sylius_product_deposit.yaml
+# config/packages/gewebe_sylius_product_deposit.yaml
 
 imports:
-    - { resource: '@GwebSyliusProductDepositPlugin/Resources/config/app/config.yml'}
+    - { resource: '@GewebeSyliusProductDepositPlugin/Resources/config/app/config.yml'}
 ```
 
 ### Extend `ProductVariant` entity
@@ -53,8 +53,8 @@ imports:
 namespace App\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface as ProductVariantDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantDepositTrait;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface as ProductVariantDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantDepositTrait;
 use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
 
 /**
@@ -91,7 +91,7 @@ App\Entity\Product\ProductVariant:
                 onDelete: SET NULL
     oneToMany:
         channelDeposits:
-            targetEntity: Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
+            targetEntity: Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface
             mappedBy: productVariant
             orphanRemoval: true
             indexBy: channelCode
@@ -137,11 +137,11 @@ $ vendor/bin/phpspec run
 $ vendor/bin/phpstan analyse -c phpstan.neon -l max src/
 ```
 
-[ico-version]: https://img.shields.io/packagist/v/gweb/sylius-product-deposit-plugin.svg?style=flat-square
+[ico-version]: https://img.shields.io/packagist/v/gewebe/sylius-product-deposit-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/gewebe/SyliusProductDepositPlugin/master.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/gewebe/SyliusProductDepositPlugin.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/gweb/sylius-product-deposit-plugin
+[link-packagist]: https://packagist.org/packages/gewebe/sylius-product-deposit-plugin
 [link-travis]: https://travis-ci.org/gewebe/SyliusProductDepositPlugin
 [link-code-quality]: https://scrutinizer-ci.com/g/gewebe/SyliusProductDepositPlugin

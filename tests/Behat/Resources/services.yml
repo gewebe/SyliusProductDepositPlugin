@@ -1,27 +1,27 @@
 services:
     _defaults: { public: true }
 
-    gweb_product_deposit.behat.context.setup.product_deposit:
-        class: Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Setup\ProductDepositContext
+    gewebe_sylius_product_deposit_plugin.behat.context.setup.product_deposit:
+        class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Setup\ProductDepositContext
         arguments:
             - "@doctrine.orm.entity_manager"
 
-    gweb_product_deposit.behat.context.ui.admin.managing_product_variants:
-        class: Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Ui\Admin\ManagingProductVariantsContext
+    gewebe_sylius_product_deposit_plugin.behat.context.ui.admin.managing_product_variants:
+        class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Ui\Admin\ManagingProductVariantsContext
         arguments:
-            - "@gweb_product_deposit.behat.page.admin.product_variant.update"
+            - "@gewebe_sylius_product_deposit_plugin.behat.page.admin.product_variant.update"
 
-    gweb_product_deposit.behat.context.ui.shop.product:
-        class: Tests\Gweb\SyliusProductDepositPlugin\Behat\Context\Ui\Shop\ProductContext
+    gewebe_sylius_product_deposit_plugin.behat.context.ui.shop.product:
+        class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Ui\Shop\ProductContext
         arguments:
-            - "@gweb_product_deposit.behat.page.shop.product.show"
+            - "@gewebe_sylius_product_deposit_plugin.behat.page.shop.product.show"
 
-    gweb_product_deposit.behat.page.admin.product_variant.update:
-        class: Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Admin\ProductVariantUpdatePage
+    gewebe_sylius_product_deposit_plugin.behat.page.admin.product_variant.update:
+        class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Admin\ProductVariantUpdatePage
         parent: sylius.behat.page.admin.product_variant.update
         public: false
 
-    gweb_product_deposit.behat.page.shop.product.show:
-        class: Tests\Gweb\SyliusProductDepositPlugin\Behat\Page\Shop\Product\ShowPage
+    gewebe_sylius_product_deposit_plugin.behat.page.shop.product.show:
+        class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Shop\Product\ShowPage
         parent: sylius.behat.page.shop.product.show
         public: false

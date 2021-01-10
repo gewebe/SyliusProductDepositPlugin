@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\OrderProcessing;
+namespace Gewebe\SyliusProductDepositPlugin\OrderProcessing;
 
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Matcher\ZoneMatcherInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
@@ -18,8 +18,6 @@ use Webmozart\Assert\Assert;
 
 /**
  * Recalculates the order item unit price inclusive deposit
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 final class OrderDepositProcessor implements OrderProcessorInterface
 {

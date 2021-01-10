@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Provider;
+namespace Gewebe\SyliusProductDepositPlugin\Provider;
 
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Product\Model\ProductOptionValueInterface;

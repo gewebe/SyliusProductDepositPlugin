@@ -1,6 +1,6 @@
 <?php
 
-use Tests\Gweb\SyliusProductDepositPlugin\Application\Kernel;
+use Tests\Gewebe\SyliusProductDepositPlugin\Application\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 

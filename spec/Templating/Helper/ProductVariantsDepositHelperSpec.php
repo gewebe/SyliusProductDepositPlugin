@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace spec\Gweb\SyliusProductDepositPlugin\Templating\Helper;
+namespace spec\Gewebe\SyliusProductDepositPlugin\Templating\Helper;
 
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
-use Gweb\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
-use Gweb\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositHelper;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
+use Gewebe\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositHelper;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -56,6 +56,6 @@ class ProductVariantsDepositHelperSpec extends ObjectBehavior
 
     function it_has_name()
     {
-        $this->getName()->shouldReturn('gweb_product_variants_deposit');
+        $this->getName()->shouldReturn('gewebe_product_variants_deposit');
     }
 }

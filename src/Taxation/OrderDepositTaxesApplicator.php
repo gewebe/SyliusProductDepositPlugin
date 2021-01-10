@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Taxation;
+namespace Gewebe\SyliusProductDepositPlugin\Taxation;
 
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Core\Model\OrderInterface;
@@ -18,8 +18,6 @@ use Sylius\Component\Taxation\Calculator\CalculatorInterface;
 
 /**
  * Apply deposit tax to order item units
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
 {

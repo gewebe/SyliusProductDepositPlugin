@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace spec\Gweb\SyliusProductDepositPlugin\Provider;
+namespace spec\Gewebe\SyliusProductDepositPlugin\Provider;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Gweb\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
-use Gweb\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProvider;
-use Gweb\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProvider;
+use Gewebe\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;

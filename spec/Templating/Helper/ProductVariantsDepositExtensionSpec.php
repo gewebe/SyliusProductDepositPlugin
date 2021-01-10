@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace spec\Gweb\SyliusProductDepositPlugin\Templating\Helper;
+namespace spec\Gewebe\SyliusProductDepositPlugin\Templating\Helper;
 
-use Gweb\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositExtension;
-use Gweb\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositHelper;
+use Gewebe\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositExtension;
+use Gewebe\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositHelper;
 use PhpSpec\ObjectBehavior;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;

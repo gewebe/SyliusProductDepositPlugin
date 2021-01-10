@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Gweb\SyliusProductDepositPlugin\Application\Entity;
+namespace Tests\Gewebe\SyliusProductDepositPlugin\Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface as ProductVariantDepositInterface;
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantDepositTrait;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface as ProductVariantDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantDepositTrait;
 use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
 
 /**

@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Menu;
+namespace Gewebe\SyliusProductDepositPlugin\Menu;
 
 use Sylius\Bundle\AdminBundle\Event\ProductVariantMenuBuilderEvent;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Adding the deposit point to the product variant menu
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 final class AdminProductVariantFormMenuListener
 {
@@ -31,9 +29,9 @@ final class AdminProductVariantFormMenuListener
         $menu->addChild('deposit', ['position' => 1])
             ->setAttribute(
                 'template',
-                '@GwebSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
+                '@GewebeSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
             )
-            ->setLabel($this->translator->trans('gweb_deposit.admin.product_variant.menu'))
+            ->setLabel($this->translator->trans('gewebe_product_deposit_plugin.admin.product_variant.menu'))
             ->setLabelAttribute('icon', 'dollar');
     }
 }

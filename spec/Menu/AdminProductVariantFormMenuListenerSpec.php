@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace spec\Gweb\SyliusProductDepositPlugin\Menu;
+namespace spec\Gewebe\SyliusProductDepositPlugin\Menu;
 
-use Gweb\SyliusProductDepositPlugin\Menu\AdminProductVariantFormMenuListener;
+use Gewebe\SyliusProductDepositPlugin\Menu\AdminProductVariantFormMenuListener;
 use Knp\Menu\ItemInterface;
 use PhpSpec\ObjectBehavior;
 use Sylius\Bundle\AdminBundle\Event\ProductVariantMenuBuilderEvent;
@@ -15,7 +15,7 @@ final class AdminProductVariantFormMenuListenerSpec extends ObjectBehavior
     function let(
         TranslatorInterface $translator
     ): void {
-        $translator->trans('gweb_deposit.admin.product_variant.menu')->willReturn('Deposit');
+        $translator->trans('gewebe_product_deposit_plugin.admin.product_variant.menu')->willReturn('Deposit');
 
         $this->beConstructedWith($translator);
     }
@@ -35,7 +35,7 @@ final class AdminProductVariantFormMenuListenerSpec extends ObjectBehavior
 
         $menuItem->setAttribute(
             'template',
-            '@GwebSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
+            '@GewebeSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
         )->willReturn($menuItem);
         $menuItem->setLabel('Deposit')->willReturn($menuItem);
         $menuItem->setLabelAttribute('icon', 'dollar')->shouldBeCalled();

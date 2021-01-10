@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Entity;
+namespace Gewebe\SyliusProductDepositPlugin\Entity;
 
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Core\Model\ChannelInterface;
@@ -11,8 +11,6 @@ use \Sylius\Component\Core\Model\ProductVariantInterface as BaseProductVariantIn
 
 /**
  * Entity for the product variant with deposits
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 interface ProductVariantInterface extends BaseProductVariantInterface
 {

@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Gweb\SyliusProductDepositPlugin\Templating\Helper;
+namespace Gewebe\SyliusProductDepositPlugin\Templating\Helper;
 
-use Gweb\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
-use Gweb\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
+use Gewebe\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Symfony\Component\Templating\Helper\Helper;
 
 /**
  * Template helper to get product variant deposit prices
- *
- * @author Gerd Weitenberg <gweitenb@gmail.com>
  */
 class ProductVariantsDepositHelper extends Helper
 {
@@ -58,6 +56,6 @@ class ProductVariantsDepositHelper extends Helper
      */
     public function getName(): string
     {
-        return 'gweb_product_variants_deposit';
+        return 'gewebe_product_variants_deposit';
     }
 }
