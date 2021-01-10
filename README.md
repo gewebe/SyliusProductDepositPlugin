@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
-[![Build Status][ico-travis]][link-travis]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
 <a href="https://sylius.com/plugins/" target="_blank"><img src="https://sylius.com/assets/badge-approved-by-sylius.png" width="100"></a>
@@ -139,9 +138,7 @@ $ vendor/bin/phpstan analyse -c phpstan.neon -l max src/
 
 [ico-version]: https://img.shields.io/packagist/v/gewebe/sylius-product-deposit-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/gewebe/SyliusProductDepositPlugin/master.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/gewebe/SyliusProductDepositPlugin.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/gewebe/sylius-product-deposit-plugin
-[link-travis]: https://travis-ci.org/gewebe/SyliusProductDepositPlugin
 [link-code-quality]: https://scrutinizer-ci.com/g/gewebe/SyliusProductDepositPlugin
