@@ -30,7 +30,7 @@ final class ProductVariantsDepositsProvider implements ProductVariantsDepositsPr
 
         /** @var ProductOptionValueInterface $option */
         foreach ($variant->getOptionValues() as $option) {
-            $optionMap[$option->getOptionCode()] = $option->getCode();
+            $optionMap[$option->getOptionCode() ?? ''] = $option->getCode();
         }
 
         $channelDeposit = $variant->getChannelDepositForChannel($channel);

@@ -9,29 +9,18 @@ namespace Gewebe\SyliusProductDepositPlugin\Entity;
  */
 class ChannelDeposit implements ChannelDepositInterface
 {
-    /**
-     * @var int
-     */
+    /** @var mixed */
     private $id;
 
-    /**
-     * @var int
-     */
+    /** @var int|null */
     private $price;
 
-    /**
-     * @var string
-     */
+    /** @var string|null */
     private $channelCode;
 
-    /**
-     * @var ProductVariantInterface|null
-     */
+    /** @var ProductVariantInterface|null */
     private $productVariant;
 
-    /**
-     * {@inheritdoc}
-     */
     public function __toString(): string
     {
         return (string) $this->getPrice();
@@ -45,50 +34,32 @@ class ChannelDeposit implements ChannelDepositInterface
         return $this->id;
     }
 
-    /**
-     * @return int
-     */
     public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    /**
-     * @param int $price
-     */
-    public function setPrice(int $price): void
+    public function setPrice(?int $price): void
     {
         $this->price = $price;
     }
 
-    /**
-     * @return ProductVariantInterface|null
-     */
     public function getProductVariant(): ?ProductVariantInterface
     {
         return $this->productVariant;
     }
 
-    /**
-     * @param ProductVariantInterface|null $productVariants
-     */
     public function setProductVariant(?ProductVariantInterface $productVariants): void
     {
         $this->productVariant = $productVariants;
     }
 
-    /**
-     * @return string|null
-     */
     public function getChannelCode(): ?string
     {
         return $this->channelCode;
     }
 
-    /**
-     * @param string $channelCode
-     */
-    public function setChannelCode(string $channelCode): void
+    public function setChannelCode(?string $channelCode): void
     {
         $this->channelCode = $channelCode;
     }

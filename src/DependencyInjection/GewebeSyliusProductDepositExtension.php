@@ -12,9 +12,6 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 final class GewebeSyliusProductDepositExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $configs);

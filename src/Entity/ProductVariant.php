@@ -13,6 +13,8 @@ use Sylius\Component\Core\Model\ProductVariant as BaseProductVariant;
  *
  * @ORM\Entity
  * @ORM\Table(name="sylius_product_variant")
+ *
+ * @psalm-suppress PropertyNotSetInConstructor
  */
 class ProductVariant extends BaseProductVariant implements DepositProductVariantInterface
 {
@@ -24,5 +26,4 @@ class ProductVariant extends BaseProductVariant implements DepositProductVariant
 
         $this->initProductVariantDepositTrait();
     }
-
 }

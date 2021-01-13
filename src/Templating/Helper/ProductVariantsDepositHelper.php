@@ -15,9 +15,7 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 class ProductVariantsDepositHelper extends Helper
 {
-    /**
-     * @var ProductVariantsDepositsProviderInterface
-     */
+    /** @var ProductVariantsDepositsProviderInterface */
     private $productVariantsDepositProvider;
 
     public function __construct(ProductVariantsDepositsProviderInterface $productVariantsDepositProvider)
@@ -27,9 +25,6 @@ class ProductVariantsDepositHelper extends Helper
 
     /**
      * Get deposit price by given product variant and channel
-     * @param ProductVariantInterface $productVariant
-     * @param ChannelInterface $channel
-     * @return int|null
      */
     public function getDeposit(ProductVariantInterface $productVariant, ChannelInterface $channel): ?int
     {
@@ -42,18 +37,12 @@ class ProductVariantsDepositHelper extends Helper
 
     /**
      * Get deposit prices by given product and channel
-     * @param ProductInterface $product
-     * @param ChannelInterface $channel
-     * @return array
      */
     public function getDepositsByProduct(ProductInterface $product, ChannelInterface $channel): array
     {
         return $this->productVariantsDepositProvider->provideVariantsDeposits($product, $channel);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'gewebe_product_variants_deposit';

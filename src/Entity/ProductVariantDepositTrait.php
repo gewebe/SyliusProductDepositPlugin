@@ -37,7 +37,7 @@ trait ProductVariantDepositTrait
     protected $channelDeposits;
 
     /**
-     * @var TaxCategoryInterface
+     * @var TaxCategoryInterface|null
      *
      * @ORM\ManyToOne(targetEntity="\Sylius\Component\Taxation\Model\TaxCategoryInterface", cascade={"all"}, fetch="EAGER")
      * @ORM\JoinColumn(name="deposit_tax_category_id", referencedColumnName="id", onDelete="SET NULL")
@@ -46,8 +46,6 @@ trait ProductVariantDepositTrait
 
     /**
      * Returns all deposit elements for all channels
-     * @return Collection|ChannelDepositInterface[]
-     *
      * @psalm-return Collection<array-key, ChannelDepositInterface>
      */
     public function getChannelDeposits(): Collection
@@ -55,11 +53,6 @@ trait ProductVariantDepositTrait
         return $this->channelDeposits;
     }
 
-    /**
-     * Returns the deposit element for one channel
-     * @param ChannelInterface $channel
-     * @return ChannelDepositInterface|null
-     */
     public function getChannelDepositForChannel(ChannelInterface $channel): ?ChannelDepositInterface
     {
         $channelCode = $channel->getCode();
@@ -71,31 +64,16 @@ trait ProductVariantDepositTrait
         return null;
     }
 
-    /**
-     * Check if channel has deposit element
-     * @param ChannelInterface $channel
-     * @return bool
-     */
     public function hasChannelDepositForChannel(ChannelInterface $channel): bool
     {
         return null !== $this->getChannelDepositForChannel($channel);
     }
 
-    /**
-     * Check if has deposit element
-     * @param ChannelDepositInterface $channelDeposit
-     * @return bool
-     */
     public function hasChannelDeposit(ChannelDepositInterface $channelDeposit): bool
     {
         return $this->channelDeposits->contains($channelDeposit);
     }
 
-    /**
-     * Adds an deposit element to the list
-     * @param ChannelDepositInterface $channelDeposit
-     * @return void
-     */
     public function addChannelDeposit(ChannelDepositInterface $channelDeposit): void
     {
         $channelCode = $channelDeposit->getChannelCode();
@@ -106,11 +84,6 @@ trait ProductVariantDepositTrait
         }
     }
 
-    /**
-     * Removes a deposit element from the list
-     * @param ChannelDepositInterface $channelDeposit
-     * @return void
-     */
     public function removeChannelDeposit(ChannelDepositInterface $channelDeposit): void
     {
         $channelCode = $channelDeposit->getChannelCode();
@@ -121,17 +94,11 @@ trait ProductVariantDepositTrait
         }
     }
 
-    /**
-     * @return TaxCategoryInterface
-     */
     public function getDepositTaxCategory(): ?TaxCategoryInterface
     {
         return $this->depositTaxCategory;
     }
 
-    /**
-     * @param TaxCategoryInterface $depositTaxCategory
-     */
     public function setDepositTaxCategory(TaxCategoryInterface $depositTaxCategory): void
     {
         $this->depositTaxCategory = $depositTaxCategory;

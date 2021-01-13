@@ -21,19 +21,13 @@ use Webmozart\Assert\Assert;
  */
 final class OrderDepositProcessor implements OrderProcessorInterface
 {
-    /**
-     * @var ZoneProviderInterface
-     */
+    /** @var ZoneProviderInterface */
     private $defaultTaxZoneProvider;
 
-    /**
-     * @var ZoneMatcherInterface
-     */
+    /** @var ZoneMatcherInterface */
     private $zoneMatcher;
 
-    /**
-     * @var OrderTaxesApplicatorInterface
-     */
+    /** @var OrderTaxesApplicatorInterface */
     private $orderDepositTaxesApplicator;
 
     /**
@@ -86,11 +80,6 @@ final class OrderDepositProcessor implements OrderProcessorInterface
         }
     }
 
-    /**
-     * @param \Sylius\Component\Core\Model\OrderInterface $order
-     *
-     * @return ZoneInterface|null
-     */
     private function getTaxZone(OrderInterface $order): ?ZoneInterface
     {
         $shippingAddress = $order->getShippingAddress();

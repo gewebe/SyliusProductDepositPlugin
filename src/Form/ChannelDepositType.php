@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Gewebe\SyliusProductDepositPlugin\Form;
 
 use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Bundle\MoneyBundle\Form\Type\MoneyType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Core\Model\ChannelInterface;
-use Sylius\Component\Core\Model\ProductVariantInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -20,18 +20,22 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 final class ChannelDepositType extends AbstractResourceType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        /** @var ChannelInterface $channel */
+        $channel = $options['channel'];
+        $baseCurrency = $channel->getBaseCurrency();
+        if ($baseCurrency === null) {
+            return;
+        }
+
         $builder->add(
             'price',
             MoneyType::class,
             [
                 'label' => 'gewebe_product_deposit_plugin.admin.product_variant.price',
                 'required' => false,
-                'currency' => $options['channel']->getBaseCurrency()->getCode(),
+                'currency' => $baseCurrency->getCode(),
             ]
         );
 
@@ -47,17 +51,26 @@ final class ChannelDepositType extends AbstractResourceType
                     return;
                 }
 
-                $channelDeposit->setChannelCode($options['channel']->getCode());
-                $channelDeposit->setProductVariant($options['product_variant']);
+                /** @var ChannelInterface $channel */
+                $channel = $options['channel'];
+                $channelCode = $channel->getCode();
+                if ($channelCode === null) {
+                    $event->setData(null);
+
+                    return;
+                }
+
+                /** @var ProductVariantInterface $productVariant */
+                $productVariant = $options['product_variant'];
+
+                $channelDeposit->setChannelCode($channelCode);
+                $channelDeposit->setProductVariant($productVariant);
 
                 $event->setData($channelDeposit);
             }
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         parent::configureOptions($resolver);
@@ -70,15 +83,14 @@ final class ChannelDepositType extends AbstractResourceType
             ->setDefaults(
                 [
                     'label' => function(Options $options): string {
-                        return $options['channel']->getName();
+                        /** @var ChannelInterface $channel */
+                        $channel = $options['channel'];
+                        return $channel->getName() ?? '';
                     },
                 ]
             );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'gewebe_channel_deposit';

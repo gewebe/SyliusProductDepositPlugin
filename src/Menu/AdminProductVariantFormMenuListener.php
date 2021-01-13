@@ -12,9 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  */
 final class AdminProductVariantFormMenuListener
 {
-    /**
-     * @var TranslatorInterface
-     */
+    /** @var TranslatorInterface */
     private $translator;
 
     public function __construct(TranslatorInterface $translator)

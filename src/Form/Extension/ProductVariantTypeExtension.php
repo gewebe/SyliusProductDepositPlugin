@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Gewebe\SyliusProductDepositPlugin\Form\Extension;
 
+use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Gewebe\SyliusProductDepositPlugin\Form\ChannelDepositType;
 use Sylius\Bundle\CoreBundle\Form\Type\ChannelCollectionType;
 use Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType;
@@ -19,9 +20,6 @@ use Symfony\Component\Form\FormEvents;
  */
 class ProductVariantTypeExtension extends AbstractTypeExtension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('depositTaxCategory', TaxCategoryChoiceType::class, [
@@ -33,6 +31,7 @@ class ProductVariantTypeExtension extends AbstractTypeExtension
         $builder->addEventListener(
             FormEvents::PRE_SET_DATA,
             function(FormEvent $event): void {
+                /** @var ProductVariantInterface $productVariant */
                 $productVariant = $event->getData();
 
                 $event->getForm()->add(
@@ -54,9 +53,6 @@ class ProductVariantTypeExtension extends AbstractTypeExtension
         );
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public static function getExtendedTypes(): array
     {
         return [
