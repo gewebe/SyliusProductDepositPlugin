@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDeposit;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
