@@ -3,6 +3,7 @@ services:
     # Admin product variant menu listener
     gewebe_sylius_product_deposit_plugin.listener.admin.product_variant.form.menu_builder:
         class: Gewebe\SyliusProductDepositPlugin\Menu\AdminProductVariantFormMenuListener
-        arguments: ['@sylius.theme.translation.theme_aware_translator.inner']
+        arguments:
+            - '@Sylius\Bundle\ThemeBundle\Translation\ThemeAwareTranslator'
         tags:
             - { name: kernel.event_listener, event: sylius.menu.admin.product_variant.form, method: addItems }

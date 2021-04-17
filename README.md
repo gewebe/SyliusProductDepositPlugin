@@ -126,7 +126,7 @@ $ yarn install
 $ yarn run gulp
 $ bin/console assets:install public -e test
 $ bin/console doctrine:schema:create -e test
-$ bin/console server:run 127.0.0.1:8080 -d public -e test
+$ symfony server:start --port=8080 --dir=public
 ```
 
 Run Tests
@@ -134,6 +134,7 @@ Run Tests
 $ vendor/bin/behat
 $ vendor/bin/phpspec run
 $ vendor/bin/phpstan analyse -c phpstan.neon -l max src/
+$ vendor/bin/psalm
 ```
 
 [ico-version]: https://img.shields.io/packagist/v/gewebe/sylius-product-deposit-plugin.svg?style=flat-square

@@ -27,9 +27,9 @@ final class AdminProductVariantFormMenuListener
         $menu->addChild('deposit', ['position' => 1])
             ->setAttribute(
                 'template',
-                '@GewebeSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
+                '@GewebeSyliusProductDepositPlugin/Admin/ProductVariant/Tab/_deposit.html.twig'
             )
-            ->setLabel($this->translator->trans('gewebe_product_deposit_plugin.admin.product_variant.menu'))
+            ->setLabel($this->translator->trans('gewebe_sylius_product_deposit_plugin.admin.product_variant.menu'))
             ->setLabelAttribute('icon', 'dollar');
     }
 }
