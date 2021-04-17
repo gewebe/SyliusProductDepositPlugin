@@ -15,7 +15,7 @@ final class AdminProductVariantFormMenuListenerSpec extends ObjectBehavior
     function let(
         TranslatorInterface $translator
     ): void {
-        $translator->trans('gewebe_product_deposit_plugin.admin.product_variant.menu')->willReturn('Deposit');
+        $translator->trans('gewebe_sylius_product_deposit_plugin.admin.product_variant.menu')->willReturn('Deposit');
 
         $this->beConstructedWith($translator);
     }
@@ -35,7 +35,7 @@ final class AdminProductVariantFormMenuListenerSpec extends ObjectBehavior
 
         $menuItem->setAttribute(
             'template',
-            '@GewebeSyliusProductDepositPlugin/Resources/views/Admin/ProductVariant/Tab/_deposit.html.twig'
+            '@GewebeSyliusProductDepositPlugin/Admin/ProductVariant/Tab/_deposit.html.twig'
         )->willReturn($menuItem);
         $menuItem->setLabel('Deposit')->willReturn($menuItem);
         $menuItem->setLabelAttribute('icon', 'dollar')->shouldBeCalled();
