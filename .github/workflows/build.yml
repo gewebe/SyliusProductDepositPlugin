@@ -27,9 +27,6 @@ jobs:
                 node: [10.x]
                 mysql: [5.7]
 
-                exclude:
-                    -
-                        symfony: ^5.2
 
         env:
             APP_ENV: test
