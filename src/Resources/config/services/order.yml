@@ -8,7 +8,7 @@ services:
             '@sylius.zone_matcher',
             '@gewebe_sylius_product_deposit_plugin.taxation.order_deposit_taxes_applicator']
         tags:
-            - { name: sylius.order_processor, priority: 0 }
+            - { name: sylius.order_processor, priority: 5 }
 
     # Order deposit tax applicator
     gewebe_sylius_product_deposit_plugin.taxation.order_deposit_taxes_applicator:
