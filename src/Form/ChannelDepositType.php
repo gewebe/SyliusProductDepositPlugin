@@ -33,7 +33,7 @@ final class ChannelDepositType extends AbstractResourceType
             'price',
             MoneyType::class,
             [
-                'label' => 'gewebe_product_deposit_plugin.admin.product_variant.price',
+                'label' => 'gewebe_sylius_product_deposit_plugin.admin.product_variant.price',
                 'required' => false,
                 'currency' => $baseCurrency->getCode(),
             ]
