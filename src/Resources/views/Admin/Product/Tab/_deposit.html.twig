@@ -1,0 +1,10 @@
+<div class="ui tab" data-tab="deposit">
+    <h3 class="ui top attached header">{{ 'gewebe_sylius_product_deposit_plugin.admin.product_variant.tab'|trans }}</h3>
+    <div class="ui attached segment">
+        {{ form_row(form.variant.depositTaxCategory) }}
+
+        {{ form_row(form.variant.channelDeposits) }}
+
+        {{ sonata_block_render_event('sylius.admin.product_variant.' ~ action ~ '.tab_deposit', {'form': form}) }}
+    </div>
+</div>

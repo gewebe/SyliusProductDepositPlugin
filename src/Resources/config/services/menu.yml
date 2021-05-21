@@ -1,5 +1,13 @@
 services:
 
+    # Admin product menu listener
+    gewebe_sylius_product_deposit_plugin.listener.admin.product.form.menu_builder:
+        class: Gewebe\SyliusProductDepositPlugin\Menu\AdminProductFormMenuListener
+        arguments:
+            - '@Sylius\Bundle\ThemeBundle\Translation\ThemeAwareTranslator'
+        tags:
+            - { name: kernel.event_listener, event: sylius.menu.admin.product.form, method: addItems }
+
     # Admin product variant menu listener
     gewebe_sylius_product_deposit_plugin.listener.admin.product_variant.form.menu_builder:
         class: Gewebe\SyliusProductDepositPlugin\Menu\AdminProductVariantFormMenuListener
