@@ -1,4 +1,4 @@
-@managing_product_deposit
+@shop_product_deposit
 Feature: Adding a product with deposit price to the cart
     In order to use product deposit and calc the final price
     As a customer
@@ -30,7 +30,9 @@ Feature: Adding a product with deposit price to the cart
         And there should be one item in my cart
         And this item should have name "Water Bottle"
         And this item should have variant "1 Liter"
-        And I should see "Water Bottle" with unit price "$4.50" in my cart
+        And I should see "Water Bottle" with unit price "$4.00" in my cart
+        And I should see "Water Bottle" with deposit price "$0.50" in my cart
+        And total price of "Water Bottle" item should be "$4.50"
         And my cart total should be "$4.50"
         And there should be no taxes charged
 
@@ -42,6 +44,8 @@ Feature: Adding a product with deposit price to the cart
         And there should be one item in my cart
         And this item should have name "Water Bottle"
         And this item should have variant "5 Liter"
-        And I should see "Water Bottle" with unit price "$20.00" in my cart
+ad        And I should see "Water Bottle" with unit price "$19.00" in my cart
+        And I should see "Water Bottle" with deposit price "$1.00" in my cart
+        And total price of "Water Bottle" item should be "$20.15"
         And my cart total should be "$20.15"
         And my cart taxes should be "$0.15"

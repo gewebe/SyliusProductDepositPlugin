@@ -16,6 +16,11 @@ services:
         arguments:
             - "@gewebe_sylius_product_deposit_plugin.behat.page.shop.product.show"
 
+    gewebe_sylius_product_deposit_plugin.behat.context.ui.shop.cart:
+        class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Context\Ui\Shop\CartContext
+        arguments:
+            - "@gewebe_sylius_product_deposit_plugin.behat.page.shop.cart_summary"
+
     gewebe_sylius_product_deposit_plugin.behat.page.admin.product_variant.update:
         class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Admin\ProductVariantUpdatePage
         parent: sylius.behat.page.admin.product_variant.update
@@ -24,4 +29,9 @@ services:
     gewebe_sylius_product_deposit_plugin.behat.page.shop.product.show:
         class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Shop\Product\ShowPage
         parent: sylius.behat.page.shop.product.show
+        public: false
+
+    gewebe_sylius_product_deposit_plugin.behat.page.shop.cart_summary:
+        class: Tests\Gewebe\SyliusProductDepositPlugin\Behat\Page\Shop\Cart\SummaryPage
+        parent: sylius.behat.page.shop.cart_summary
         public: false
