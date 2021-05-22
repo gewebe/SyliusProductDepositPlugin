@@ -2,6 +2,7 @@
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
+[![Build][ico-build]][link-build]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
 <a href="https://sylius.com/plugins/" target="_blank"><img src="https://sylius.com/assets/badge-approved-by-sylius.png" width="100"></a>
@@ -126,6 +127,8 @@ $ yarn install
 $ yarn run gulp
 $ bin/console assets:install public -e test
 $ bin/console doctrine:schema:create -e test
+
+$ export APP_ENV=test
 $ symfony server:start --port=8080 --dir=public
 ```
 
@@ -140,6 +143,8 @@ $ vendor/bin/psalm
 [ico-version]: https://img.shields.io/packagist/v/gewebe/sylius-product-deposit-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-code-quality]: https://img.shields.io/scrutinizer/g/gewebe/SyliusProductDepositPlugin.svg?style=flat-square
+[ico-build]: https://github.com/gewebe/SyliusProductDepositPlugin/actions/workflows/build.yml/badge.svg
 
 [link-packagist]: https://packagist.org/packages/gewebe/sylius-product-deposit-plugin
 [link-code-quality]: https://scrutinizer-ci.com/g/gewebe/SyliusProductDepositPlugin
+[link-build]: https://github.com/gewebe/SyliusProductDepositPlugin/actions/workflows/build.yml
