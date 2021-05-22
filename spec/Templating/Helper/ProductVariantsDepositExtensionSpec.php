@@ -31,7 +31,7 @@ final class ProductVariantsDepositExtensionSpec extends ObjectBehavior
     function it_returns_functions(): void
     {
         $functions = $this->getFunctions();
-        $functions->shouldHaveCount(2);
+        $functions->shouldHaveCount(3);
         foreach ($functions as $function) {
             $function->shouldHaveType(TwigFunction::class);
         }

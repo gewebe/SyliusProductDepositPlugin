@@ -26,6 +26,7 @@ final class ProductVariantsDepositExtension extends AbstractExtension
         return [
             new TwigFunction('gewebe_calculate_deposit', [$this->productVariantsDepositHelper, 'getDeposit']),
             new TwigFunction('gewebe_product_variant_deposit', [$this->productVariantsDepositHelper, 'getDepositsByProduct']),
+            new TwigFunction('gewebe_order_item_deposit', [$this->productVariantsDepositHelper, 'getDepositByOrderItem']),
         ];
     }
 }
