@@ -43,6 +43,12 @@ imports:
     - { resource: '@GewebeSyliusProductDepositPlugin/Resources/config/app/config.yml'}
 ```
 
+### Copy the template overrides from the plugin directory
+```
+From: [shop_dir]/vendor/gewebe/sylius-product-deposit-plugin/test/Application/templates
+To: [shop_dir]/templates
+```
+
 ### Extend `ProductVariant` entity
 
 - If you use `annotations` mapping:
