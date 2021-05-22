@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace spec\Gewebe\SyliusProductDepositPlugin\Templating\Helper;
 
-use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Gewebe\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
 use Gewebe\SyliusProductDepositPlugin\Templating\Helper\ProductVariantsDepositHelper;
@@ -33,12 +32,9 @@ class ProductVariantsDepositHelperSpec extends ObjectBehavior
 
     function it_returns_single_product_variant_deposit_price(
         ProductVariantInterface $productVariant,
-        ChannelInterface $channel,
-        ChannelDepositInterface $channelDeposit
+        ChannelInterface $channel
     ): void {
-        $channelDeposit->getPrice()->willReturn(50);
-
-        $productVariant->getChannelDepositForChannel($channel)->willReturn($channelDeposit);
+        $productVariant->getDepositPriceByChannel($channel)->willReturn(50);
 
         $this->getDeposit($productVariant, $channel)->shouldReturn(50);
     }

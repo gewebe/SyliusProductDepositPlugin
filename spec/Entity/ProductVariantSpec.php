@@ -34,25 +34,23 @@ final class ProductVariantSpec extends ObjectBehavior
     {
         $channel->getCode()->willReturn('de');
 
+        $channelDeposit->getPrice()->willReturn(100);
         $channelDeposit->getChannelCode()->willReturn('de');
         $channelDeposit->setProductVariant($this)->shouldBeCalled();
         $channelDeposit->setProductVariant(null)->shouldBeCalled();
 
         $this->hasChannelDeposit($channelDeposit)->shouldReturn(false);
-        $this->hasChannelDepositForChannel($channel)->shouldReturn(false);
-        $this->getChannelDepositForChannel($channel)->shouldReturn(null);
+        $this->getDepositPriceByChannel($channel)->shouldReturn(null);
 
         $this->addChannelDeposit($channelDeposit);
 
         $this->hasChannelDeposit($channelDeposit)->shouldReturn(true);
-        $this->hasChannelDepositForChannel($channel)->shouldReturn(true);
-        $this->getChannelDepositForChannel($channel)->shouldReturn($channelDeposit);
+        $this->getDepositPriceByChannel($channel)->shouldReturn(100);
 
         $this->removeChannelDeposit($channelDeposit);
 
         $this->hasChannelDeposit($channelDeposit)->shouldReturn(false);
-        $this->hasChannelDepositForChannel($channel)->shouldReturn(false);
-        $this->getChannelDepositForChannel($channel)->shouldReturn(null);
+        $this->getDepositPriceByChannel($channel)->shouldReturn(null);
     }
 
     function it_has_tax_category(TaxCategoryInterface $taxCategory): void

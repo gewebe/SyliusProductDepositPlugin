@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Gewebe\SyliusProductDepositPlugin\Provider;
 
-use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
@@ -33,9 +32,9 @@ final class ProductVariantsDepositsProvider implements ProductVariantsDepositsPr
             $optionMap[$option->getOptionCode() ?? ''] = $option->getCode();
         }
 
-        $channelDeposit = $variant->getChannelDepositForChannel($channel);
-        if ($channelDeposit instanceof ChannelDepositInterface) {
-            $optionMap['value'] = $channelDeposit->getPrice();
+        $depositPrice = $variant->getDepositPriceByChannel($channel);
+        if ($depositPrice !== null) {
+            $optionMap['value'] = $depositPrice;
         }
 
         return $optionMap;

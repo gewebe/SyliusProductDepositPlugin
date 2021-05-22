@@ -6,6 +6,7 @@ namespace Gewebe\SyliusProductDepositPlugin\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 
@@ -53,20 +54,19 @@ trait ProductVariantDepositTrait
         return $this->channelDeposits;
     }
 
-    public function getChannelDepositForChannel(ChannelInterface $channel): ?ChannelDepositInterface
+    public function getDepositPriceByChannel(ChannelInterface $channel): ?int
     {
         $channelCode = $channel->getCode();
-
-        if ($channelCode !== null && $this->channelDeposits->containsKey($channelCode)) {
-            return $this->channelDeposits->get($channelCode);
+        if ($channelCode === null) {
+            return null;
         }
 
-        return null;
-    }
+        $channelDeposit = $this->channelDeposits->get($channelCode);
+        if (!$channelDeposit instanceof ChannelDepositInterface) {
+            return null;
+        }
 
-    public function hasChannelDepositForChannel(ChannelInterface $channel): bool
-    {
-        return null !== $this->getChannelDepositForChannel($channel);
+        return $channelDeposit->getPrice() ?? null;
     }
 
     public function hasChannelDeposit(ChannelDepositInterface $channelDeposit): bool

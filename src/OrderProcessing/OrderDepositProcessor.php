@@ -60,12 +60,7 @@ final class OrderDepositProcessor implements OrderProcessorInterface
             /** @var ProductVariantInterface $variant */
             $variant = $item->getVariant();
 
-            $channelDeposit = $variant->getChannelDepositForChannel($channel);
-            if (null === $channelDeposit) {
-                continue;
-            }
-
-            $depositPrice = $channelDeposit->getPrice();
+            $depositPrice = $variant->getDepositPriceByChannel($channel);
             if (null === $depositPrice) {
                 continue;
             }

@@ -20,9 +20,7 @@ interface ProductVariantInterface extends BaseProductVariantInterface
      */
     public function getChannelDeposits(): Collection;
 
-    public function getChannelDepositForChannel(ChannelInterface $channel): ?ChannelDepositInterface;
-
-    public function hasChannelDepositForChannel(ChannelInterface $channel): bool;
+    public function getDepositPriceByChannel(ChannelInterface $channel): ?int;
 
     public function hasChannelDeposit(ChannelDepositInterface $channelDeposit): bool;
 

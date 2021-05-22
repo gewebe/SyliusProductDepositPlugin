@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace spec\Gewebe\SyliusProductDepositPlugin\Provider;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Gewebe\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProvider;
 use Gewebe\SyliusProductDepositPlugin\Provider\ProductVariantsDepositsProviderInterface;
@@ -30,11 +29,9 @@ final class ProductVariantsDepositsProviderSpec extends ObjectBehavior
         ProductInterface $product,
         ProductVariantInterface $productVariant,
         ProductOptionValueInterface $productOptionValue,
-        ChannelInterface $channel,
-        ChannelDepositInterface $channelDeposit
+        ChannelInterface $channel
     ): void {
-        $channelDeposit->getPrice()->willReturn(50);
-        $productVariant->getChannelDepositForChannel($channel)->willReturn($channelDeposit);
+        $productVariant->getDepositPriceByChannel($channel)->willReturn(50);
 
         $productOptionValue->getCode()->willReturn('1 liter');
         $productOptionValue->getOptionCode()->willReturn('1_liter');

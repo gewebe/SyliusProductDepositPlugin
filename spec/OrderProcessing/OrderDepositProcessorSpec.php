@@ -53,7 +53,6 @@ final class OrderDepositProcessorSpec extends ObjectBehavior
         AdjustmentInterface $adjustment,
         AdjustmentFactoryInterface $adjustmentFactory,
         ChannelInterface $channel,
-        ChannelDepositInterface $channelDeposit,
         OrderInterface $order,
         OrderItemInterface $orderItem,
         OrderItemUnitInterface $orderItemUnit,
@@ -70,8 +69,7 @@ final class OrderDepositProcessorSpec extends ObjectBehavior
         $orderItem->getVariant()->willReturn($productVariant);
         $orderItem->getUnits()->willReturn(new ArrayCollection([$orderItemUnit->getWrappedObject()]));
 
-        $productVariant->getChannelDepositForChannel($channel)->willReturn($channelDeposit);
-        $channelDeposit->getPrice()->willReturn(50);
+        $productVariant->getDepositPriceByChannel($channel)->willReturn(50);
 
         $orderItemUnit->addAdjustment($adjustment)->shouldBeCalled();
 

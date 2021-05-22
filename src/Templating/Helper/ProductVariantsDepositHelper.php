@@ -28,11 +28,7 @@ class ProductVariantsDepositHelper extends Helper
      */
     public function getDeposit(ProductVariantInterface $productVariant, ChannelInterface $channel): ?int
     {
-        $channelDeposit = $productVariant->getChannelDepositForChannel($channel);
-        if (null != $channelDeposit) {
-            return $channelDeposit->getPrice();
-        }
-        return null;
+        return $productVariant->getDepositPriceByChannel($channel) ?? null;
     }
 
     /**
