@@ -1,19 +1,34 @@
 services:
 
-    # Order processor
+    # Order adjustment clearer
+    sylius.order_processing.order_adjustments_clearer:
+        class: Sylius\Component\Core\OrderProcessing\OrderAdjustmentsClearer
+        arguments:
+            - [!php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_ITEM_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_SHIPPING_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::ORDER_UNIT_PROMOTION_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::SHIPPING_ADJUSTMENT,
+               !php/const Sylius\Component\Core\Model\AdjustmentInterface::TAX_ADJUSTMENT,
+               !php/const Gewebe\SyliusProductDepositPlugin\Entity\AdjustmentInterface::DEPOSIT_ADJUSTMENT]
+        tags:
+            - { name: sylius.order_processor, priority: 60 }
+
+    # Order deposit processor
     gewebe_sylius_product_deposit_plugin.order_processor.deposit:
         class: Gewebe\SyliusProductDepositPlugin\OrderProcessing\OrderDepositProcessor
-        arguments: [
-            '@sylius.provider.channel_based_default_zone_provider',
-            '@sylius.zone_matcher',
-            '@gewebe_sylius_product_deposit_plugin.taxation.order_deposit_taxes_applicator']
+        arguments:
+            - '@sylius.factory.adjustment'
+            - '@gewebe_sylius_product_deposit_plugin.taxation.order_deposit_taxes_applicator'
+            - '@sylius.zone_matcher'
+            - '@sylius.provider.channel_based_default_zone_provider'
         tags:
             - { name: sylius.order_processor, priority: 5 }
 
     # Order deposit tax applicator
     gewebe_sylius_product_deposit_plugin.taxation.order_deposit_taxes_applicator:
         class: Gewebe\SyliusProductDepositPlugin\Taxation\OrderDepositTaxesApplicator
-        arguments: [
-            '@sylius.tax_calculator',
-            '@sylius.factory.adjustment',
-            '@sylius.repository.tax_rate']
+        arguments:
+            - '@sylius.factory.adjustment'
+            - '@sylius.tax_calculator'
+            - '@sylius.repository.tax_rate'

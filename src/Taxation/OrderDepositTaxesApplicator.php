@@ -8,8 +8,7 @@ use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\AdjustmentInterface;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Core\Model\TaxRate;
-use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\TaxRateInterface;
 use Sylius\Component\Order\Model\OrderItemUnitInterface;
 use Sylius\Component\Core\Taxation\Applicator\OrderTaxesApplicatorInterface;
 use Sylius\Component\Order\Factory\AdjustmentFactoryInterface;
@@ -17,78 +16,72 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Taxation\Calculator\CalculatorInterface;
 
 /**
- * Apply deposit tax to order item units
+ * Apply deposit tax adjustment to order item units
  */
 final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
 {
-    /** @var CalculatorInterface */
-    private $calculator;
-
     /** @var AdjustmentFactoryInterface */
     private $adjustmentFactory;
+
+    /** @var CalculatorInterface */
+    private $calculator;
 
     /** @var RepositoryInterface */
     private $taxRateRepository;
 
     public function __construct(
-        CalculatorInterface $calculator,
         AdjustmentFactoryInterface $adjustmentFactory,
+        CalculatorInterface $calculator,
         RepositoryInterface $taxRateRepository
     ) {
-        $this->calculator = $calculator;
         $this->adjustmentFactory = $adjustmentFactory;
+        $this->calculator = $calculator;
         $this->taxRateRepository = $taxRateRepository;
     }
 
     public function apply(OrderInterface $order, ZoneInterface $zone): void
     {
-        /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
-
             /** @var ProductVariantInterface $variant */
             $variant = $item->getVariant();
 
-            $channel = $order->getChannel();
-            if (null == $channel) {
-                continue;
-            }
-
-            $channelDeposit = $variant->getChannelDepositForChannel($channel);
-            if (null == $channelDeposit) {
-                continue;
-            }
-
             $taxCategory = $variant->getDepositTaxCategory();
 
-            /** @var TaxRate|null $taxRate */
+            /** @var TaxRateInterface|null $taxRate */
             $taxRate = $this->taxRateRepository->findOneBy(['category' => $taxCategory, 'zone' => $zone]);
             if (null == $taxRate) {
                 continue;
             }
 
             foreach ($item->getUnits() as $unit) {
-                $taxAmount = $this->calculator->calculate((float) $channelDeposit->getPrice(), $taxRate);
+                $depositPrice = $unit->getAdjustmentsTotal('deposit');
+
+                $taxAmount = $this->calculator->calculate((float) $depositPrice, $taxRate);
                 if (0.00 === $taxAmount) {
                     continue;
                 }
 
-                $this->addTaxAdjustment(
+                $this->addAdjustment(
                     $unit,
-                    (int) $taxAmount,
-                    (string) $taxRate->getLabel(),
-                    $taxRate->isIncludedInPrice()
+                    $taxRate,
+                    (int) $taxAmount
                 );
             }
         }
     }
 
-    private function addTaxAdjustment(OrderItemUnitInterface $unit, int $taxAmount, string $label, bool $included): void
+    private function addAdjustment(OrderItemUnitInterface $unit, TaxRateInterface $taxRate, int $taxAmount): void
     {
         $unitTaxAdjustment = $this->adjustmentFactory->createWithData(
             AdjustmentInterface::TAX_ADJUSTMENT,
-            $label,
+            (string) $taxRate->getLabel(),
             $taxAmount,
-            $included
+            $taxRate->isIncludedInPrice(),
+            [
+                'taxRateCode' => $taxRate->getCode(),
+                'taxRateName' => $taxRate->getName(),
+                'taxRateAmount' => $taxRate->getAmount(),
+            ]
         );
         $unit->addAdjustment($unitTaxAdjustment);
     }

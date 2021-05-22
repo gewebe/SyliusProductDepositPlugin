@@ -5,13 +5,11 @@ declare(strict_types=1);
 namespace spec\Gewebe\SyliusProductDepositPlugin\Taxation;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Gewebe\SyliusProductDepositPlugin\Taxation\OrderDepositTaxesApplicator;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Addressing\Model\ZoneInterface;
 use Sylius\Component\Core\Model\AdjustmentInterface;
-use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\OrderItemUnitInterface;
@@ -25,11 +23,11 @@ use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 final class OrderDepositTaxesApplicatorSpec extends ObjectBehavior
 {
     function let(
-        CalculatorInterface $calculator,
         AdjustmentFactoryInterface $adjustmentFactory,
+        CalculatorInterface $calculator,
         RepositoryInterface $taxRateRepository
     ) {
-        $this->beConstructedWith($calculator, $adjustmentFactory, $taxRateRepository);
+        $this->beConstructedWith($adjustmentFactory, $calculator, $taxRateRepository);
     }
 
     function it_is_initializable(): void
@@ -46,8 +44,6 @@ final class OrderDepositTaxesApplicatorSpec extends ObjectBehavior
         AdjustmentFactoryInterface $adjustmentFactory,
         AdjustmentInterface $adjustment,
         CalculatorInterface $calculator,
-        ChannelInterface $channel,
-        ChannelDepositInterface $channelDeposit,
         OrderInterface $order,
         OrderItemInterface $orderItem,
         OrderItemUnitInterface $orderItemUnit,
@@ -59,29 +55,34 @@ final class OrderDepositTaxesApplicatorSpec extends ObjectBehavior
     ): void {
         $adjustmentFactory->createWithData(
             AdjustmentInterface::TAX_ADJUSTMENT,
-            'Returnable tax (exclude)',
+            'Deposit Tax (3%)',
             15,
-            false
+            false,
+            [
+                'taxRateCode' => 'deposit',
+                'taxRateName' => 'Deposit Tax',
+                'taxRateAmount' => 0.03,
+            ]
         )->willReturn($adjustment);
 
-        $taxRate->getLabel()->willReturn('Returnable tax (exclude)');
+        $taxRate->getLabel()->willReturn('Deposit Tax (3%)');
+        $taxRate->getName()->willReturn('Deposit Tax');
+        $taxRate->getCode()->willReturn('deposit');
+        $taxRate->getAmount()->willReturn(0.03);
         $taxRate->isIncludedInPrice()->willReturn(false);
 
         $calculator->calculate(100, $taxRate)->willReturn(15);
         $taxRateRepository->findOneBy(['category' => $taxCategory, 'zone' => $zone])->willReturn($taxRate);
-        $this->beConstructedWith($calculator, $adjustmentFactory, $taxRateRepository);
+        $this->beConstructedWith($adjustmentFactory, $calculator, $taxRateRepository);
 
-        $channelDeposit->getPrice()->willReturn(100);
-
-        $productVariant->getChannelDepositForChannel($channel)->willReturn($channelDeposit);
         $productVariant->getDepositTaxCategory()->willReturn($taxCategory);
 
         $orderItem->getVariant()->willReturn($productVariant);
         $orderItem->getUnits()->willReturn(new ArrayCollection([$orderItemUnit->getWrappedObject()]));
 
+        $orderItemUnit->getAdjustmentsTotal('deposit')->willReturn(100);
         $orderItemUnit->addAdjustment($adjustment)->shouldBeCalled();
 
-        $order->getChannel()->willReturn($channel);
         $order->getItems()->willReturn(new ArrayCollection([$orderItem->getWrappedObject()]));
 
 

@@ -4,45 +4,47 @@ declare(strict_types=1);
 
 namespace Gewebe\SyliusProductDepositPlugin\OrderProcessing;
 
+use Gewebe\SyliusProductDepositPlugin\Entity\AdjustmentInterface;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Addressing\Matcher\ZoneMatcherInterface;
 use Sylius\Component\Addressing\Model\ZoneInterface;
-use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\Scope;
 use Sylius\Component\Core\Provider\ZoneProviderInterface;
 use Sylius\Component\Core\Taxation\Applicator\OrderTaxesApplicatorInterface;
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Order\Factory\AdjustmentFactoryInterface;
 use Sylius\Component\Order\Model\OrderInterface as BaseOrderInterface;
+use Sylius\Component\Order\Model\OrderItemUnitInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 use Webmozart\Assert\Assert;
 
 /**
- * Recalculates the order item unit price inclusive deposit
+ * Apply deposit adjustment to order item units
  */
 final class OrderDepositProcessor implements OrderProcessorInterface
 {
-    /** @var ZoneProviderInterface */
-    private $defaultTaxZoneProvider;
-
-    /** @var ZoneMatcherInterface */
-    private $zoneMatcher;
+    /** @var AdjustmentFactoryInterface */
+    private $adjustmentFactory;
 
     /** @var OrderTaxesApplicatorInterface */
     private $orderDepositTaxesApplicator;
 
-    /**
-     * @param ZoneProviderInterface $defaultTaxZoneProvider
-     * @param ZoneMatcherInterface $zoneMatcher
-     * @param OrderTaxesApplicatorInterface $orderDepositTaxesApplicator
-     */
+    /** @var ZoneMatcherInterface */
+    private $zoneMatcher;
+
+    /** @var ZoneProviderInterface */
+    private $defaultTaxZoneProvider;
+
     public function __construct(
-        ZoneProviderInterface $defaultTaxZoneProvider,
+        AdjustmentFactoryInterface $adjustmentFactory,
+        OrderTaxesApplicatorInterface $orderDepositTaxesApplicator,
         ZoneMatcherInterface $zoneMatcher,
-        OrderTaxesApplicatorInterface $orderDepositTaxesApplicator
+        ZoneProviderInterface $defaultTaxZoneProvider
     ) {
-        $this->defaultTaxZoneProvider = $defaultTaxZoneProvider;
-        $this->zoneMatcher = $zoneMatcher;
+        $this->adjustmentFactory = $adjustmentFactory;
         $this->orderDepositTaxesApplicator = $orderDepositTaxesApplicator;
+        $this->zoneMatcher = $zoneMatcher;
+        $this->defaultTaxZoneProvider = $defaultTaxZoneProvider;
     }
 
     public function process(BaseOrderInterface $order): void
@@ -54,9 +56,7 @@ final class OrderDepositProcessor implements OrderProcessorInterface
             return;
         }
 
-        /** @var OrderItemInterface $item */
         foreach ($order->getItems() as $item) {
-
             /** @var ProductVariantInterface $variant */
             $variant = $item->getVariant();
 
@@ -70,7 +70,9 @@ final class OrderDepositProcessor implements OrderProcessorInterface
                 continue;
             }
 
-            $item->setUnitPrice($item->getUnitPrice() + $depositPrice);
+            foreach ($item->getUnits() as $unit) {
+                $this->addAdjustment($unit, $depositPrice);
+            }
         }
 
         // apply deposit taxes
@@ -78,6 +80,18 @@ final class OrderDepositProcessor implements OrderProcessorInterface
         if (null !== $zone) {
             $this->orderDepositTaxesApplicator->apply($order, $zone);
         }
+    }
+
+
+    private function addAdjustment(OrderItemUnitInterface $unit, int $amount): void
+    {
+        $adjustment = $this->adjustmentFactory->createWithData(
+            AdjustmentInterface::DEPOSIT_ADJUSTMENT,
+            'Deposit',
+            $amount
+        );
+
+        $unit->addAdjustment($adjustment);
     }
 
     private function getTaxZone(OrderInterface $order): ?ZoneInterface

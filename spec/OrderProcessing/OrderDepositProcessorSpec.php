@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace spec\Gewebe\SyliusProductDepositPlugin\OrderProcessing;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Gewebe\SyliusProductDepositPlugin\Entity\AdjustmentInterface;
 use Gewebe\SyliusProductDepositPlugin\Entity\ChannelDepositInterface;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Gewebe\SyliusProductDepositPlugin\OrderProcessing\OrderDepositProcessor;
@@ -15,18 +16,26 @@ use Sylius\Component\Core\Model\AddressInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\OrderItemUnitInterface;
 use Sylius\Component\Core\Provider\ZoneProviderInterface;
 use Sylius\Component\Core\Taxation\Applicator\OrderTaxesApplicatorInterface;
+use Sylius\Component\Order\Factory\AdjustmentFactoryInterface;
 use Sylius\Component\Order\Processor\OrderProcessorInterface;
 
 final class OrderDepositProcessorSpec extends ObjectBehavior
 {
     function let(
-        ZoneProviderInterface $defaultTaxZoneProvider,
+        AdjustmentFactoryInterface $adjustmentFactory,
+        OrderTaxesApplicatorInterface $orderTaxesApplicator,
         ZoneMatcherInterface $zoneMatcher,
-        OrderTaxesApplicatorInterface $orderTaxesApplicator
+        ZoneProviderInterface $defaultTaxZoneProvider
     ): void {
-        $this->beConstructedWith($defaultTaxZoneProvider, $zoneMatcher, $orderTaxesApplicator);
+        $this->beConstructedWith(
+            $adjustmentFactory,
+            $orderTaxesApplicator,
+            $zoneMatcher,
+            $defaultTaxZoneProvider
+        );
     }
 
     function it_is_initializable(): void
@@ -41,30 +50,39 @@ final class OrderDepositProcessorSpec extends ObjectBehavior
 
     function it_process_order_deposit(
         AddressInterface $address,
+        AdjustmentInterface $adjustment,
+        AdjustmentFactoryInterface $adjustmentFactory,
         ChannelInterface $channel,
         ChannelDepositInterface $channelDeposit,
         OrderInterface $order,
         OrderItemInterface $orderItem,
+        OrderItemUnitInterface $orderItemUnit,
         OrderTaxesApplicatorInterface $orderTaxesApplicator,
         ProductVariantInterface $productVariant,
         ZoneProviderInterface $defaultTaxZoneProvider,
         ZoneMatcherInterface $zoneMatcher,
         ZoneInterface $zone
     ): void {
-        $channelDeposit->getPrice()->willReturn(50);
-
-        $productVariant->getChannelDepositForChannel($channel)->willReturn($channelDeposit);
-
-        $orderItem->getVariant()->willReturn($productVariant);
-        $orderItem->getUnitPrice()->willReturn(400);
-        $orderItem->setUnitPrice(450)->shouldBeCalled();
-
         $order->getChannel()->willReturn($channel);
         $order->getItems()->willReturn(new ArrayCollection([$orderItem->getWrappedObject()]));
         $order->getShippingAddress()->willReturn($address);
 
+        $orderItem->getVariant()->willReturn($productVariant);
+        $orderItem->getUnits()->willReturn(new ArrayCollection([$orderItemUnit->getWrappedObject()]));
+
+        $productVariant->getChannelDepositForChannel($channel)->willReturn($channelDeposit);
+        $channelDeposit->getPrice()->willReturn(50);
+
+        $orderItemUnit->addAdjustment($adjustment)->shouldBeCalled();
+
+        $adjustmentFactory->createWithData(
+            AdjustmentInterface::DEPOSIT_ADJUSTMENT,
+            'Deposit',
+            50
+        )->willReturn($adjustment);
+
         $defaultTaxZoneProvider->getZone($order)->willReturn($zone);
-        $this->beConstructedWith($defaultTaxZoneProvider, $zoneMatcher, $orderTaxesApplicator);
+        $this->beConstructedWith($adjustmentFactory, $orderTaxesApplicator, $zoneMatcher, $defaultTaxZoneProvider);
 
         $this->process($order);
     }
