@@ -44,7 +44,7 @@ Feature: Adding a product with deposit price to the cart
         And there should be one item in my cart
         And this item should have name "Water Bottle"
         And this item should have variant "5 Liter"
-ad        And I should see "Water Bottle" with unit price "$19.00" in my cart
+        And I should see "Water Bottle" with unit price "$19.00" in my cart
         And I should see "Water Bottle" with deposit price "$1.00" in my cart
         And total price of "Water Bottle" item should be "$20.15"
         And my cart total should be "$20.15"
