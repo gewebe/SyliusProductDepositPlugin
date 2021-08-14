@@ -11,9 +11,6 @@ final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder('gewebe_product_deposit');
-        $rootNode = $treeBuilder->getRootNode();
-
-        return $treeBuilder;
+        return new TreeBuilder('gewebe_product_deposit');
     }
 }

@@ -27,7 +27,6 @@ final class ProductVariantsDepositsProvider implements ProductVariantsDepositsPr
     {
         $optionMap = [];
 
-        /** @var ProductOptionValueInterface $option */
         foreach ($variant->getOptionValues() as $option) {
             $optionMap[$option->getOptionCode() ?? ''] = $option->getCode();
         }
