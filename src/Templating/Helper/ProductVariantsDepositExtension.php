@@ -12,13 +12,8 @@ use Twig\TwigFunction;
  */
 final class ProductVariantsDepositExtension extends AbstractExtension
 {
-    /** @var ProductVariantsDepositHelper */
-    private $productVariantsDepositHelper;
-
-    /** @param ProductVariantsDepositHelper $productVariantsDepositHelper */
-    public function __construct(ProductVariantsDepositHelper $productVariantsDepositHelper)
+    public function __construct(private ProductVariantsDepositHelper $productVariantsDepositHelper)
     {
-        $this->productVariantsDepositHelper = $productVariantsDepositHelper;
     }
 
     public function getFunctions(): array

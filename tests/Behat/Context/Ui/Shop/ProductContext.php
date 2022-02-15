@@ -10,14 +10,8 @@ use Webmozart\Assert\Assert;
 
 final class ProductContext implements Context
 {
-    /**
-     * @var ShowPageInterface
-     */
-    private $showPage;
-
-    public function __construct(ShowPageInterface $showPage)
+    public function __construct(private ShowPageInterface $showPage)
     {
-        $this->showPage = $showPage;
     }
 
     /**

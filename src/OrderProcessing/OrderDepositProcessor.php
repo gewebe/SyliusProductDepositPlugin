@@ -23,28 +23,12 @@ use Webmozart\Assert\Assert;
  */
 final class OrderDepositProcessor implements OrderProcessorInterface
 {
-    /** @var AdjustmentFactoryInterface */
-    private $adjustmentFactory;
-
-    /** @var OrderTaxesApplicatorInterface */
-    private $orderDepositTaxesApplicator;
-
-    /** @var ZoneMatcherInterface */
-    private $zoneMatcher;
-
-    /** @var ZoneProviderInterface */
-    private $defaultTaxZoneProvider;
-
     public function __construct(
-        AdjustmentFactoryInterface $adjustmentFactory,
-        OrderTaxesApplicatorInterface $orderDepositTaxesApplicator,
-        ZoneMatcherInterface $zoneMatcher,
-        ZoneProviderInterface $defaultTaxZoneProvider
+        private AdjustmentFactoryInterface $adjustmentFactory,
+        private OrderTaxesApplicatorInterface $orderDepositTaxesApplicator,
+        private ZoneMatcherInterface $zoneMatcher,
+        private ZoneProviderInterface $defaultTaxZoneProvider
     ) {
-        $this->adjustmentFactory = $adjustmentFactory;
-        $this->orderDepositTaxesApplicator = $orderDepositTaxesApplicator;
-        $this->zoneMatcher = $zoneMatcher;
-        $this->defaultTaxZoneProvider = $defaultTaxZoneProvider;
     }
 
     public function process(BaseOrderInterface $order): void

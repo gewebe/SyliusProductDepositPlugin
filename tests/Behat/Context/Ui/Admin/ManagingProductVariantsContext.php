@@ -11,12 +11,8 @@ use Webmozart\Assert\Assert;
 
 final class ManagingProductVariantsContext implements Context
 {
-    /** @var ProductVariantUpdatePageInterface */
-    private $updatePage;
-
-    public function __construct(ProductVariantUpdatePageInterface $productVariantUpdatePage)
+    public function __construct(private ProductVariantUpdatePageInterface $updatePage)
     {
-        $this->updatePage = $productVariantUpdatePage;
     }
 
     /**

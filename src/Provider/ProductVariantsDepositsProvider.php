@@ -7,7 +7,6 @@ namespace Gewebe\SyliusProductDepositPlugin\Provider;
 use Gewebe\SyliusProductDepositPlugin\Entity\ProductVariantInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ProductInterface;
-use Sylius\Component\Product\Model\ProductOptionValueInterface;
 
 final class ProductVariantsDepositsProvider implements ProductVariantsDepositsProviderInterface
 {

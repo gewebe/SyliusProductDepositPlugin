@@ -20,23 +20,11 @@ use Sylius\Component\Taxation\Calculator\CalculatorInterface;
  */
 final class OrderDepositTaxesApplicator implements OrderTaxesApplicatorInterface
 {
-    /** @var AdjustmentFactoryInterface */
-    private $adjustmentFactory;
-
-    /** @var CalculatorInterface */
-    private $calculator;
-
-    /** @var RepositoryInterface */
-    private $taxRateRepository;
-
     public function __construct(
-        AdjustmentFactoryInterface $adjustmentFactory,
-        CalculatorInterface $calculator,
-        RepositoryInterface $taxRateRepository
+        private AdjustmentFactoryInterface $adjustmentFactory,
+        private CalculatorInterface $calculator,
+        private RepositoryInterface $taxRateRepository
     ) {
-        $this->adjustmentFactory = $adjustmentFactory;
-        $this->calculator = $calculator;
-        $this->taxRateRepository = $taxRateRepository;
     }
 
     public function apply(OrderInterface $order, ZoneInterface $zone): void

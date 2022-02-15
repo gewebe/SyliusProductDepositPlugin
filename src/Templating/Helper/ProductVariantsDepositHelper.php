@@ -18,12 +18,8 @@ use Symfony\Component\Templating\Helper\Helper;
  */
 class ProductVariantsDepositHelper extends Helper
 {
-    /** @var ProductVariantsDepositsProviderInterface */
-    private $productVariantsDepositProvider;
-
-    public function __construct(ProductVariantsDepositsProviderInterface $productVariantsDepositProvider)
+    public function __construct(private ProductVariantsDepositsProviderInterface $productVariantsDepositProvider)
     {
-        $this->productVariantsDepositProvider = $productVariantsDepositProvider;
     }
 
     /**

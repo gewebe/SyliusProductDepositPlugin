@@ -13,14 +13,8 @@ use Sylius\Component\Taxation\Model\TaxCategoryInterface;
 
 final class ProductDepositContext implements Context
 {
-    /**
-     * @var ObjectManager
-     */
-    private $objectManager;
-
-    public function __construct(ObjectManager $objectManager)
+    public function __construct(private ObjectManager $objectManager)
     {
-        $this->objectManager = $objectManager;
     }
 
     /**
